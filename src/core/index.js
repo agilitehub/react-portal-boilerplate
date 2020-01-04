@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 
 import { setupReducers } from './core-utils'
 import CoreEnums from './resources/enums'
-import CoreAppContainer from './containers/core-app-container'
+import CoreApp from './components/core-app'
 
 // CSS Files
 import 'antd/dist/antd.css'
@@ -19,7 +19,7 @@ const store = createStore(indexReducerWrapper, {}, devTools)
 
 ReactDOM.render(
   <Provider store={store}>
-    <CoreAppContainer />
+    <CoreApp />
   </Provider>,
   document.getElementById(CoreEnums.values.ROOT)
 )
