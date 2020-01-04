@@ -1,0 +1,42 @@
+{
+    "name": "agilite-react-portal-boilerplate",
+    "version": "7.0.0",
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "cypress:open": "cypress open"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ],
+    "engines": {
+        "node": "12.13.1"
+    },
+    "dependencies": {
+        "agilite-utils": "7.0.6",
+        "compression": "1.7.4",
+        "express": "4.17.1"
+    },
+    "devDependencies": {
+        "@types/agilite": "6.4.0",
+        "agilite": "6.6.1",
+        "antd": "3.26.3",
+        "babel-plugin-import": "1.13.0",
+        "cypress": "3.8.0",
+        "react": "16.12.0",
+        "react-dom": "16.12.0",
+        "react-redux": "7.1.3",
+        "react-scripts": "3.3.0",
+        "redux": "4.0.4",
+        "redux-devtools-extension": "2.13.8",
+        "redux-thunk": "2.3.0"
+    }
+}
