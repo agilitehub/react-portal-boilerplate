@@ -22,5 +22,5 @@ const port = process.env.PORT
 const server = http.createServer(app)
 
 server.listen(port, () => {
-  console.log(`${process.env.APP_NAME} listening on Port - ${process.env.PORT}`)
+  console.log(`${process.env.REACT_APP_NAME} listening on Port - ${process.env.PORT}`)
 })
