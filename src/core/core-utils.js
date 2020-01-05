@@ -1,6 +1,8 @@
-export const setupReducers = (data, callback) => {
+import AppConfig from '../app-config'
+import theme from './resources/theme'
+
+export const setupReducers = () => {
   const core = require('./core-reducer').default
-  const AppConfig = require('../app-config').default
 
   let manifest = null
 
@@ -15,4 +17,26 @@ export const setupReducers = (data, callback) => {
   }
 
   return reducers
+}
+
+export const setupState = () => {
+  const state = {
+    general: {
+      ...AppConfig.general,
+      title: process.env.REACT_APP_NAME
+    },
+    theme,
+    user: null,
+    toolbar: AppConfig.toolbar,
+    tabObject: {
+      tabs: [],
+      activeKey: '',
+      activeApp: '',
+      tabType: ''
+    }
+  }
+
+  console.log(state)
+
+  return state
 }

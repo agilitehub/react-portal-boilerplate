@@ -6,7 +6,13 @@ const CoreEnums = {
   },
   values: {
     PRODUCTION: 'production',
-    ROOT: 'root'
+    ROOT: 'root',
+    AUTHENTICATING: 'authenticating',
+    AUTHENTICATED: 'authenticated'
+  },
+  messages: {
+    APP_CLOSE: `Are you sure you want to close the ${process.env.REACT_APP_NAME}?`,
+    CANCEL_RECORD_PROMPT: 'Are you sure you want to close this record? Any unsaved changes will be discarded'
   }
 }
 

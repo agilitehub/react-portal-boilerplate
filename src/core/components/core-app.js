@@ -1,30 +1,47 @@
-import React, { useEffect } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { Suspense, lazy, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Row, Col } from 'antd'
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import AppConfig from '../../app-config'
 import CoreEnums from '../resources/enums'
 
-// import CoreToolbarContainer from '../containers/core-toolbar-container'
-// import CoreAnonymousWrapper from './core-anonymous-wrapper'
-// import CoreLandingContainer from '../containers/core-landing-container'
+// CUSTOM COMPONENTS
+import CoreLoading from './core-loading'
 
-// TODO: Add logic to enable/disable reCaptcha logic from AgiliteConfig
+// LAZY COMPONENTS
+const CoreToolbar = lazy(() => import('../components/core-toolbar'))
+const CoreLandingContainer = lazy(() => import('../containers/core-landing-container'))
 
 export default function CoreApp () {
+  const coreState = useSelector(state => state.core)
+  const toolbarEnabled = coreState.toolbar?.enabled || false
+
   useEffect(() => {
-    console.log('Running Use Effect')
-    window.addEventListener('beforeunload', (e) => {
-      (e || window.event).returnValue = CoreEnums.messages.APP_CLOSE // Gecko + IE
-      return CoreEnums.messages.APP_CLOSE // Gecko + Webkit, Safari, Chrome etc.
-    })
+    // Check if we need to prompt a user before the browser window/tab is closed. NOTE: Doesn't work properly on all browsers
+    const enableOnUnloadPrompt = coreState.general?.enableOnUnloadPrompt || false
+
+    if (enableOnUnloadPrompt) {
+      window.addEventListener('beforeunload', (e) => {
+        (e || window.event).returnValue = CoreEnums.messages.APP_CLOSE // Gecko + IE
+        return CoreEnums.messages.APP_CLOSE // Gecko + Webkit, Safari, Chrome etc.
+      })
+    }
   }, [])
 
   return (
-    <div>
-      <Row type='flex' justify='center'>
-        <Col xs={24} sm={24} md={24} lg={24}>
-        </Col>
-      </Row>
-    </div>
+    <Row type='flex' justify='center'>
+      <Col xs={24} sm={24} md={24} lg={24}>
+        <Suspense fallback={<CoreLoading />}>
+          {toolbarEnabled ?
+            <CoreToolbar />
+            : null}
+          <Router>
+            <Switch>
+              <Route exact path='/' component={CoreLandingContainer} />
+            </Switch>
+          </Router>
+        </Suspense>
+      </Col>
+    </Row>
   )
 }
