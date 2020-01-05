@@ -29,7 +29,7 @@ export default function CoreToolbar () {
               />
             ) : null}
             <div className='header-title'>
-              {coreState.general.title}
+              {coreState.toolbar.state.title}
             </div>
             <FontAwesomeIcon
               icon={faBars}

@@ -27,7 +27,10 @@ export const setupState = () => {
     },
     theme,
     user: null,
-    toolbar: AppConfig.toolbar,
+    toolbar: {
+      enabled: AppConfig.toolbar.enabled,
+      state: AppConfig.toolbar.defaultState
+    },
     tabObject: {
       tabs: [],
       activeKey: '',
