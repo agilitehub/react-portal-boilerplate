@@ -22,7 +22,7 @@ export default function CoreToolbar () {
           className='toolbar-header'
         >
           <div className='header-content'>
-            {coreState.user !== CoreEnums.values.AUTHENTICATED ? (
+            {coreState.toolbar.state.leftMenu.enabled ? (
               <FontAwesomeIcon
                 icon={faBars}
                 className='menu-left'
@@ -31,24 +31,17 @@ export default function CoreToolbar () {
             <div className='header-title'>
               {coreState.toolbar.state.title}
             </div>
-            <FontAwesomeIcon
-              icon={faBars}
-              className='menu-right'
-            />
-            {coreState.user === CoreEnums.values.AUTHENTICATED ? (
-              <Dropdown
-                overlay={
-                  <div />
-                }
-                className='user-menu'
-              >
-                <FontAwesomeIcon
-                  icon={faUser}
-                />
-              </Dropdown>
+            {coreState.toolbar.state.customMenu1 ? (
+              <coreState.toolbar.state.customMenu1 />
             ) : null}
-            {coreState.user === CoreEnums.values.AUTHENTICATED ? (
-              <div>Team Menu</div>
+            {coreState.toolbar.state.customMenu2 ? (
+              <coreState.toolbar.state.customMenu2 />
+            ) : null}
+            {coreState.toolbar.state.rightMenu.enabled ? (
+              <FontAwesomeIcon
+                icon={faBars}
+                className='menu-right'
+              />
             ) : null}
           </div>
         </Header>
