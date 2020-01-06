@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React, { Suspense, lazy, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col } from 'antd'
+
 import AppConfig from '../../app-config'
 import CoreEnums from '../resources/enums'
 

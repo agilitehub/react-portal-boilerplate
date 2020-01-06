@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
+import EventEmitter from 'eventemitter3'
 
 import { setupReducers } from './core-utils'
 import CoreEnums from './resources/enums'
@@ -23,3 +24,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById(CoreEnums.values.ROOT)
 )
+
+export const eventEmitter = new EventEmitter()
