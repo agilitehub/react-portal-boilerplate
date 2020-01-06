@@ -6,8 +6,7 @@ const CoreEnums = {
     PRODUCTION: 'production',
     ROOT: 'root',
     AUTHENTICATING: 'authenticating',
-    AUTHENTICATED: 'authenticated',
-    PORTAL_MENU: 'Portal Menu'
+    AUTHENTICATED: 'authenticated'
   },
   messages: {
     APP_CLOSE: `Are you sure you want to close the ${process.env.REACT_APP_NAME}?`,

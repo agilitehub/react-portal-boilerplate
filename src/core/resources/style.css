@@ -15,49 +15,51 @@ body {
   height: 40px;
 }
 
-.header-content{
+.header-content {
   margin-top: 10px;
 }
 
-.header-title{
+.header-title {
   float: left;
   margin-top: -23px;
   margin-left: 20px;
 }
 
-.menu-left{
+.menu-left {
   float: left;
   margin-left: -30px;
   cursor: pointer;
 }
 
-.menu-right{
+.menu-right {
   float: right;
   margin-right: -30px;
   cursor: pointer;
 }
 
-.menu-drawer .ant-drawer-header{
+.menu-drawer .ant-drawer-header {
   background-color: var(--primary);
   height: 41px;
   border-radius: 0;
 }
 
-.menu-drawer .ant-drawer-title{
+.menu-drawer .ant-drawer-title {
   color: var(--white);
   margin-top: -5px;
 }
 
-.menu-drawer .ant-menu .ant-menu-item-selected{
-  background-color: var(--whiteGrey);
+.menu-drawer .ant-menu .ant-menu-item-selected {
   color: var(--primary);
   font-weight: bold;
 }
 
-.menu-drawer .ant-menu-item:hover{
+.menu-drawer .ant-menu-item:hover {
   color: var(--primary);
 }
 
-.menu-drawer .ant-menu-vertical .ant-menu-item:after, .ant-menu-vertical-left .ant-menu-item:after, .ant-menu-vertical-right .ant-menu-item:after, .ant-menu-inline .ant-menu-item:after{
+.menu-drawer .ant-menu-vertical .ant-menu-item:after,
+.ant-menu-vertical-left .ant-menu-item:after,
+.ant-menu-vertical-right .ant-menu-item:after,
+.ant-menu-inline .ant-menu-item:after {
   border-right-color: var(--primary);
 }

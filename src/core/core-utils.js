@@ -1,5 +1,5 @@
 import AppConfig from '../app-config'
-import theme from './resources/theme'
+import CoreTheme from './resources/theme'
 
 export const setupReducers = () => {
   const core = require('./core-reducer').default
@@ -20,6 +20,12 @@ export const setupReducers = () => {
 }
 
 export const setupState = () => {
+  let theme = CoreTheme
+
+  if (AppConfig.theme) {
+    theme = AppConfig.theme
+  }
+
   const state = {
     general: {
       ...AppConfig.general,

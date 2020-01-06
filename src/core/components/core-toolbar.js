@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Layout, Drawer, Menu, Dropdown, Modal, Input, message } from 'antd'
+import { useSelector } from 'react-redux'
+import { Layout, Drawer, Dropdown, Modal, Input, message } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
@@ -69,7 +69,7 @@ export default function CoreToolbar () {
       </Layout>
       {coreState.toolbar.state.leftMenu.enabled ? (
         <Drawer
-          title={CoreEnums.values.PORTAL_MENU}
+          title={coreState.toolbar.state.leftMenu.title}
           placement='left'
           closable={false}
           width={300}
@@ -77,7 +77,11 @@ export default function CoreToolbar () {
           visible={leftMenuVisible}
           style={{ '--primary': coreState.theme.primary, '--white': coreState.theme.white, '--whiteGrey': coreState.theme.whiteGrey }}
           className='menu-drawer'
-        />
+        >
+          {coreState.toolbar.state.leftMenu.enabled && coreState.toolbar.state.leftMenu.component ? (
+            <coreState.toolbar.state.leftMenu.component handleCloseLeftMenu={handleCloseLeftMenu} />
+          ) : null}
+        </Drawer>
       ) : null}
       {coreState.toolbar.state.rightMenu.enabled ? (
         <Drawer

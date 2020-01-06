@@ -6,7 +6,6 @@ export default {
   secondaryLight: '#cfcfcf',
   secondaryDark: '#707070',
   white: '#ffffff',
-  whiteGrey: '#E4E3E5',
   black: '#000000',
   twitterBootstrap: {
     primary: '#017BFF',
@@ -15,5 +14,6 @@ export default {
     danger: '#DC3645',
     warning: '#FFC20E',
     info: '#17A2B8'
-  }
+  },
+  custom: {}
 }
