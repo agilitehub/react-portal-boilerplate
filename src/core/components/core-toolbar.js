@@ -35,8 +35,8 @@ export default function CoreToolbar () {
       <Layout>
         <Header
           style={{
-            backgroundColor: coreState.theme.primary,
-            color: coreState.theme.white
+            backgroundColor: coreState.general.theme.primary,
+            color: coreState.general.theme.white
           }}
           className='toolbar-header'
         >
@@ -75,11 +75,11 @@ export default function CoreToolbar () {
           width={300}
           onClose={handleCloseLeftMenu}
           visible={leftMenuVisible}
-          style={{ '--primary': coreState.theme.primary, '--white': coreState.theme.white, '--whiteGrey': coreState.theme.whiteGrey }}
+          style={{ '--primary': coreState.general.theme.primary, '--white': coreState.general.theme.white, '--whiteGrey': coreState.general.theme.whiteGrey }}
           className='menu-drawer'
         >
-          {coreState.toolbar.state.leftMenu.enabled && coreState.toolbar.state.leftMenu.component ? (
-            <coreState.toolbar.state.leftMenu.component handleCloseLeftMenu={handleCloseLeftMenu} />
+          {coreState.toolbar.state.leftMenu.enabled && coreState.toolbar.state.leftMenu.content ? (
+            <coreState.toolbar.state.leftMenu.content handleCloseLeftMenu={handleCloseLeftMenu} />
           ) : null}
         </Drawer>
       ) : null}
@@ -91,11 +91,11 @@ export default function CoreToolbar () {
           width={300}
           onClose={handleCloseRightMenu}
           visible={rightMenuVisible}
-          style={{ '--primary': coreState.theme.primary, '--white': coreState.theme.white, '--whiteGrey': coreState.theme.whiteGrey }}
+          style={{ '--primary': coreState.general.theme.primary, '--white': coreState.general.theme.white, '--whiteGrey': coreState.general.theme.whiteGrey }}
           className='menu-drawer'
         >
-          {coreState.toolbar.state.rightMenu.enabled && coreState.toolbar.state.rightMenu.component ? (
-            <coreState.toolbar.state.rightMenu.component handleCloseRightMenu={handleCloseRightMenu} />
+          {coreState.toolbar.state.rightMenu.enabled && coreState.toolbar.state.rightMenu.content ? (
+            <coreState.toolbar.state.rightMenu.content handleCloseRightMenu={handleCloseRightMenu} />
           ) : null}
         </Drawer>
       ) : null}

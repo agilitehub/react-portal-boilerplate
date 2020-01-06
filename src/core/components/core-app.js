@@ -10,7 +10,7 @@ import CoreLoading from './core-loading'
 
 // LAZY COMPONENTS
 const CoreToolbar = lazy(() => import('../components/core-toolbar'))
-const CoreLandingContainer = lazy(() => import('../containers/core-landing-container'))
+const CoreLanding = lazy(() => import('../components/core-landing'))
 
 export default function CoreApp () {
   const coreState = useSelector(state => state.core)
@@ -37,7 +37,7 @@ export default function CoreApp () {
             : null}
           <Router>
             <Switch>
-              <Route exact path='/' component={CoreLandingContainer} />
+              <Route exact path='/' component={CoreLanding} />
             </Switch>
           </Router>
         </Suspense>

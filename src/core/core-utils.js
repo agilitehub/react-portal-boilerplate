@@ -21,28 +21,36 @@ export const setupReducers = () => {
 
 export const setupState = () => {
   let theme = CoreTheme
+  let title = process.env.REACT_APP_NAME
 
-  if (AppConfig.theme) {
-    theme = AppConfig.theme
+  if (AppConfig.general.theme) {
+    theme = AppConfig.general.theme
+  }
+
+  if (AppConfig.general.title) {
+    title = AppConfig.general.title
   }
 
   const state = {
     general: {
       ...AppConfig.general,
-      title: process.env.REACT_APP_NAME
+      title,
+      theme,
+      user: null
     },
-    theme,
-    user: null,
-    toolbar: {
-      enabled: AppConfig.toolbar.enabled,
-      state: AppConfig.toolbar.defaultState
-    },
-    tabObject: {
+    tabNavigation: {
+      ...AppConfig.tabNavigation,
       tabs: [],
       activeKey: '',
       activeApp: '',
       tabType: ''
-    }
+    },
+    landingPageContent: AppConfig.landingPageContent,
+    toolbar: {
+      enabled: AppConfig.toolbar.enabled,
+      state: AppConfig.toolbar.defaultState
+    },
+    appLogo: AppConfig.appLogo
   }
 
   return state

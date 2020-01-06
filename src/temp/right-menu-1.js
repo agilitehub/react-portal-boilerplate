@@ -15,7 +15,7 @@ export default function RightMenu (props) {
       mode='inline'
       onClick={e => {
         const toolbar = coreState.toolbar
-        toolbar.state.rightMenu.component = RightMenu2
+        toolbar.state.rightMenu.content = RightMenu2
 
         props.handleCloseRightMenu()
 
