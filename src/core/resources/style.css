@@ -36,3 +36,28 @@ body {
   margin-right: -30px;
   cursor: pointer;
 }
+
+.menu-drawer .ant-drawer-header{
+  background-color: var(--primary);
+  height: 41px;
+  border-radius: 0;
+}
+
+.menu-drawer .ant-drawer-title{
+  color: var(--white);
+  margin-top: -5px;
+}
+
+.menu-drawer .ant-menu .ant-menu-item-selected{
+  background-color: var(--whiteGrey);
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.menu-drawer .ant-menu-item:hover{
+  color: var(--primary);
+}
+
+.menu-drawer .ant-menu-vertical .ant-menu-item:after, .ant-menu-vertical-left .ant-menu-item:after, .ant-menu-vertical-right .ant-menu-item:after, .ant-menu-inline .ant-menu-item:after{
+  border-right-color: var(--primary);
+}

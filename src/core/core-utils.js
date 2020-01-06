@@ -39,7 +39,5 @@ export const setupState = () => {
     }
   }
 
-  console.log(state)
-
   return state
 }

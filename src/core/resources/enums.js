@@ -1,14 +1,13 @@
 const CoreEnums = {
-  facets: {
-    HOME_ANONYMOUS: 'home_anonymous',
-    HOME: 'home',
-    LOADING: 'loading'
+  reducers: {
+    SET_TOOLBAR: 'coreSetToolbar'
   },
   values: {
     PRODUCTION: 'production',
     ROOT: 'root',
     AUTHENTICATING: 'authenticating',
-    AUTHENTICATED: 'authenticated'
+    AUTHENTICATED: 'authenticated',
+    PORTAL_MENU: 'Portal Menu'
   },
   messages: {
     APP_CLOSE: `Are you sure you want to close the ${process.env.REACT_APP_NAME}?`,
