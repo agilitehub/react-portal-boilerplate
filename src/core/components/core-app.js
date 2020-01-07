@@ -3,7 +3,7 @@ import React, { Suspense, lazy, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col } from 'antd'
 
-import AppConfig from '../../app-config'
+import CoreMemoryStore from '../core-memory-store'
 import CoreEnums from '../resources/enums'
 
 // CUSTOM COMPONENTS
@@ -14,12 +14,11 @@ const CoreToolbar = lazy(() => import('../components/core-toolbar'))
 const CoreLanding = lazy(() => import('../components/core-landing'))
 
 export default function CoreApp () {
-  const coreState = useSelector(state => state.core)
-  const toolbarEnabled = coreState.toolbar?.enabled || false
+  const toolbarEnabled = useSelector(state => state.core.toolbar.enabled) || false
 
   useEffect(() => {
     // Check if we need to prompt a user before the browser window/tab is closed. NOTE: Doesn't work properly on all browsers
-    const enableOnUnloadPrompt = coreState.general?.enableOnUnloadPrompt || false
+    const enableOnUnloadPrompt = CoreMemoryStore.enableOnUnloadPrompt || false
 
     if (enableOnUnloadPrompt) {
       window.addEventListener('beforeunload', (e) => {
@@ -33,9 +32,7 @@ export default function CoreApp () {
     <Row type='flex' justify='center'>
       <Col xs={24} sm={24} md={24} lg={24}>
         <Suspense fallback={<CoreLoading />}>
-          {toolbarEnabled ?
-            <CoreToolbar />
-            : null}
+          {toolbarEnabled ? <CoreToolbar /> : null}
           <Router>
             <Switch>
               <Route exact path='/' component={CoreLanding} />

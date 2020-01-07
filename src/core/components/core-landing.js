@@ -4,15 +4,16 @@ import { useSelector } from 'react-redux'
 import CoreTabNavigation from './core-tab-navigation'
 
 export default function CoreLanding (props) {
-  const coreState = useSelector(state => state.core)
+  const LandingPageContent = useSelector(state => state.core.landingPageContent)
+  const tabNavigationEnabled = useSelector(state => state.core.tabNavigation.enabled)
   // const landingPage = !coreState.tabNavigation.enabled && coreState.landingPageContent ? <coreState.landingPageContent /> : null
 
   return (
     <div className='content-wrapper'>
-      {coreState.tabNavigation.enabled ? (
+      {tabNavigationEnabled ? (
         <CoreTabNavigation />
       ) : (
-        coreState.landingPageContent ? <coreState.landingPageContent /> : null
+        LandingPageContent ? <LandingPageContent /> : null
       )}
     </div>
   )

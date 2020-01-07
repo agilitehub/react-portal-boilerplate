@@ -7,16 +7,14 @@ import CoreEnums from '../core/resources/enums'
 
 export default function RightMenu (props) {
   const dispatch = useDispatch()
-  const coreState = useSelector(state => state.core)
+  const toolbar = useSelector(state => state.core.toolbar)
 
   return (
     <Menu
       style={{ width: 250 }}
       mode='inline'
       onClick={e => {
-        const toolbar = coreState.toolbar
         toolbar.state.rightMenu.content = RightMenu1
-
         props.handleCloseRightMenu()
 
         dispatch({

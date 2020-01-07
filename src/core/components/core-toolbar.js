@@ -5,11 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 import CoreEnums from '../resources/enums'
+import CoreMemoryStore from '../core-memory-store'
 
 const { Header } = Layout
 
 export default function CoreToolbar () {
-  const coreState = useSelector(state => state.core)
+  const toolbarState = useSelector(state => state.core.toolbar)
 
   const [leftMenuVisible, setLeftMenuVisible] = useState(false)
   const [rightMenuVisible, setRightMenuVisible] = useState(false)
@@ -35,13 +36,13 @@ export default function CoreToolbar () {
       <Layout>
         <Header
           style={{
-            backgroundColor: coreState.general.theme.primary,
-            color: coreState.general.theme.white
+            backgroundColor: CoreMemoryStore.theme.primary,
+            color: CoreMemoryStore.theme.white
           }}
           className='toolbar-header'
         >
           <div className='header-content'>
-            {coreState.toolbar.state.leftMenu.enabled ? (
+            {toolbarState.state.leftMenu.enabled ? (
               <FontAwesomeIcon
                 icon={faBars}
                 className='menu-left'
@@ -49,15 +50,15 @@ export default function CoreToolbar () {
               />
             ) : null}
             <div className='header-title'>
-              {coreState.toolbar.state.title}
+              {toolbarState.state.title}
             </div>
-            {coreState.toolbar.state.customMenu1 ? (
-              <coreState.toolbar.state.customMenu1 />
+            {toolbarState.state.customMenu1 ? (
+              <toolbarState.state.customMenu1 />
             ) : null}
-            {coreState.toolbar.state.customMenu2 ? (
-              <coreState.toolbar.state.customMenu2 />
+            {toolbarState.state.customMenu2 ? (
+              <toolbarState.state.customMenu2 />
             ) : null}
-            {coreState.toolbar.state.rightMenu.enabled ? (
+            {toolbarState.state.rightMenu.enabled ? (
               <FontAwesomeIcon
                 icon={faBars}
                 className='menu-right'
@@ -67,35 +68,35 @@ export default function CoreToolbar () {
           </div>
         </Header>
       </Layout>
-      {coreState.toolbar.state.leftMenu.enabled ? (
+      {toolbarState.state.leftMenu.enabled ? (
         <Drawer
-          title={coreState.toolbar.state.leftMenu.title}
+          title={toolbarState.state.leftMenu.title}
           placement='left'
           closable={false}
           width={300}
           onClose={handleCloseLeftMenu}
           visible={leftMenuVisible}
-          style={{ '--primary': coreState.general.theme.primary, '--white': coreState.general.theme.white, '--whiteGrey': coreState.general.theme.whiteGrey }}
+          style={{ '--primary': CoreMemoryStore.theme.primary, '--white': CoreMemoryStore.theme.white, '--whiteGrey': CoreMemoryStore.theme.whiteGrey }}
           className='menu-drawer'
         >
-          {coreState.toolbar.state.leftMenu.enabled && coreState.toolbar.state.leftMenu.content ? (
-            <coreState.toolbar.state.leftMenu.content handleCloseLeftMenu={handleCloseLeftMenu} />
+          {toolbarState.state.leftMenu.enabled && toolbarState.state.leftMenu.content ? (
+            <toolbarState.state.leftMenu.content handleCloseLeftMenu={handleCloseLeftMenu} />
           ) : null}
         </Drawer>
       ) : null}
-      {coreState.toolbar.state.rightMenu.enabled ? (
+      {toolbarState.state.rightMenu.enabled ? (
         <Drawer
-          title={coreState.toolbar.state.rightMenu.title}
+          title={toolbarState.state.rightMenu.title}
           placement='right'
           closable={false}
           width={300}
           onClose={handleCloseRightMenu}
           visible={rightMenuVisible}
-          style={{ '--primary': coreState.general.theme.primary, '--white': coreState.general.theme.white, '--whiteGrey': coreState.general.theme.whiteGrey }}
+          style={{ '--primary': CoreMemoryStore.theme.primary, '--white': CoreMemoryStore.theme.white, '--whiteGrey': CoreMemoryStore.theme.whiteGrey }}
           className='menu-drawer'
         >
-          {coreState.toolbar.state.rightMenu.enabled && coreState.toolbar.state.rightMenu.content ? (
-            <coreState.toolbar.state.rightMenu.content handleCloseRightMenu={handleCloseRightMenu} />
+          {toolbarState.state.rightMenu.enabled && toolbarState.state.rightMenu.content ? (
+            <toolbarState.state.rightMenu.content handleCloseRightMenu={handleCloseRightMenu} />
           ) : null}
         </Drawer>
       ) : null}

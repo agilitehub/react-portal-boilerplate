@@ -1,5 +1,6 @@
 import AppConfig from '../app-config'
 import CoreTheme from './resources/theme'
+import CoreMemoryStore from './core-memory-store'
 
 export const setupReducers = () => {
   const core = require('./core-reducer').default
@@ -20,24 +21,20 @@ export const setupReducers = () => {
 }
 
 export const setupState = () => {
+  // This logic sets up the Core State as well as the Hidden Store
   let theme = CoreTheme
   let title = process.env.REACT_APP_NAME
 
-  if (AppConfig.general.theme) {
-    theme = AppConfig.general.theme
+  if (AppConfig.theme) {
+    theme = AppConfig.theme
   }
 
-  if (AppConfig.general.title) {
-    title = AppConfig.general.title
+  if (AppConfig.title) {
+    title = AppConfig.title
   }
 
   const state = {
-    general: {
-      ...AppConfig.general,
-      title,
-      theme,
-      user: null
-    },
+    user: null,
     tabNavigation: {
       ...AppConfig.tabNavigation,
       tabs: [],
@@ -49,9 +46,15 @@ export const setupState = () => {
     toolbar: {
       enabled: AppConfig.toolbar.enabled,
       state: AppConfig.toolbar.defaultState
-    },
-    appLogo: AppConfig.appLogo
+    }
   }
+
+  // Setup Hidden Store
+  CoreMemoryStore.agilite = AppConfig.agilite
+  CoreMemoryStore.title = title
+  CoreMemoryStore.theme = theme
+  CoreMemoryStore.enableOnUnloadPrompt = AppConfig.enableOnUnloadPrompt
+  CoreMemoryStore.appLogo = AppConfig.appLogo
 
   return state
 }

@@ -3,7 +3,7 @@ import AppConfig from './app-config'
 
 require('./core/core-index')
 
-if (AppConfig.general.enableCustomIndex) {
+if (AppConfig.enableCustomIndex) {
   require('./custom/index')
 }
 
