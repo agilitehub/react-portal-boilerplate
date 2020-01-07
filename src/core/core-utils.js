@@ -34,7 +34,6 @@ export const setupState = () => {
   }
 
   const state = {
-    user: null,
     tabNavigation: {
       ...AppConfig.tabNavigation,
       tabs: [],

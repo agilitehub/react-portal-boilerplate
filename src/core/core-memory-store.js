@@ -1,11 +1,12 @@
 export default {
+  title: '',
+  theme: {},
+  user: null,
+  enableOnUnloadPrompt: false,
   agilite: {
     apiServerUrl: '',
     apiKey: ''
   },
-  title: '',
-  theme: {},
-  enableOnUnloadPrompt: false,
   appLogo: {
     image: null,
     title: '',
