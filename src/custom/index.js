@@ -1,5 +1,5 @@
 // We need to get a handle on the App's Event Emitter
-import { eventEmitter } from '../core/index'
+import { eventEmitter } from '../core/core-index'
 
 const handleOnAppLoad = (e) => {
   console.log('onappload triggered in custom index', e)

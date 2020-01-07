@@ -1,7 +1,7 @@
-import { eventEmitter } from './core/index'
+import { eventEmitter } from './core/core-index'
 import AppConfig from './app-config'
 
-require('./core/index')
+require('./core/core-index')
 
 if (AppConfig.general.enableCustomIndex) {
   require('./custom/index')

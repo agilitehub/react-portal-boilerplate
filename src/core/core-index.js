@@ -15,7 +15,7 @@ import 'antd/dist/antd.css'
 import './resources/style.css'
 
 const indexReducerWrapper = combineReducers(setupReducers())
-const devTools = process.env.NODE_ENV === CoreEnums.values.PRODUCTION ? applyMiddleware(thunk) : composeWithDevTools(applyMiddleware(thunk))
+const devTools = process.env.NODE_ENV !== CoreEnums.values.PRODUCTION ? applyMiddleware(thunk) : composeWithDevTools(applyMiddleware(thunk))
 const store = createStore(indexReducerWrapper, {}, devTools)
 
 ReactDOM.render(
