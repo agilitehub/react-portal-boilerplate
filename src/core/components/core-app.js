@@ -1,4 +1,3 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React, { Suspense, lazy, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col } from 'antd'
@@ -33,11 +32,7 @@ export default function CoreApp () {
       <Col xs={24} sm={24} md={24} lg={24}>
         <Suspense fallback={<CoreLoading />}>
           {toolbarEnabled ? <CoreToolbar /> : null}
-          <Router>
-            <Switch>
-              <Route exact path='/' component={CoreLanding} />
-            </Switch>
-          </Router>
+          <CoreLanding />
         </Suspense>
       </Col>
     </Row>
