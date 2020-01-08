@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Tabs } from 'antd'
 
 import CoreEnums from '../resources/enums'
+import { closeTab } from '../core-utils'
 
 const TabPane = Tabs.TabPane
 
@@ -15,6 +16,7 @@ export default function CoreTabNavigation () {
   if (tabNavigationState.tabs.length === 0) {
     dispatch({
       type: CoreEnums.reducers.SET_TABS,
+      tabs: tabNavigationState.tabs,
       payload: {
         content: <tabNavigationState.rootTabContent />,
         title: tabNavigationState.rootTabTitle,
@@ -26,26 +28,23 @@ export default function CoreTabNavigation () {
     })
   }
 
-  // useEffect(() => {
-  //   if (props.activeKey !== activeKey) {
-  //     setActiveKey(nextProps.activeKey)
-  //   }
+  // Executed when clicking on the close icon
+  function handleOnEdit (targetKey) {
+    // Find Tab in Array and check if onEdit is overriden
+    const targetTab = tabNavigationState.tabs.find(tab => {
+      return tab.key === targetKey
+    })
 
-  //   if (props.tabs.length === 0) {
-  //     props.addTab({
-  //       content: <CoreTabHome />,
-  //       title: CoreEnums.values.HOME,
-  //       key: CoreEnums.facets.HOME,
-  //       app: CoreEnums.facets.HOME,
-  //       tabType: '',
-  //       closable: false
-  //     })
-  //   }
-  // })
-
-  // handleOnEdit (targetTab) {
-  //   props.closeTab(activeKey, targetTab, props.tabs)
-  // }
+    if (targetTab.handleOnEdit) {
+      targetTab.handleOnEdit(targetKey, (canClose) => {
+        if (canClose) {
+          closeTab(activeKey, targetKey, tabNavigationState.tabs, dispatch)
+        }
+      })
+    } else {
+      closeTab(activeKey, targetKey, tabNavigationState.tabs, dispatch)
+    }
+  }
 
   // handleOnChange (key) {
   //   props.changeTab(key, props.tabs)
@@ -85,7 +84,7 @@ export default function CoreTabNavigation () {
       type='editable-card'
       hideAdd
       activeKey={activeKey}
-      // onEdit={this.handlePromptTabClose}
+      onEdit={handleOnEdit}
       // onChange={this.handleOnChange}
       tabBarStyle={{ textAlign: 'left' }}
       animated={false}

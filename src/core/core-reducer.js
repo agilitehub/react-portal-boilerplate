@@ -11,7 +11,7 @@ export default (state = CoreState, action) => {
         toolbar: action.payload
       })
     case CoreEnums.reducers.SET_TABS:
-      tabArray = prepTabArray(state.tabNavigation.tabs, action.payload)
+      tabArray = prepTabArray(action.tabs, action.payload)
 
       return Object.assign({}, state, {
         tabNavigation: {

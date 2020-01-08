@@ -1,6 +1,7 @@
 import AppConfig from '../app-config'
 import CoreTheme from './resources/theme'
 import CoreMemoryStore from './core-memory-store'
+import CoreEnums from './resources/enums'
 
 export const setupReducers = () => {
   const core = require('./core-reducer').default
@@ -83,4 +84,31 @@ export const prepTabArray = (tabArray, payload) => {
   }
 
   return tabArray
+}
+
+export const closeTab = (activeKey, targetKey, tabs, dispatch) => {
+  let newTabIndex = null
+
+  // Find Target Pane to perform the resets
+  for (const x in tabs) {
+    if ((tabs[x].key === targetKey) && (targetKey === activeKey)) {
+      newTabIndex = parseInt(x) - 1
+      break
+    }
+  }
+
+  const newTabs = tabs.filter(pane => pane.key !== targetKey)
+
+  // Determine Active Tab
+  if (newTabIndex !== null) {
+    activeKey = newTabs[newTabIndex].key
+  }
+
+  dispatch({
+    type: CoreEnums.reducers.SET_TABS,
+    tabs: newTabs,
+    payload: {
+      key: activeKey
+    }
+  })
 }
