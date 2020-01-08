@@ -9,7 +9,7 @@ const TabPane = Tabs.TabPane
 export default function CoreTabNavigation () {
   const dispatch = useDispatch()
   const tabNavigationState = useSelector(state => state.core.tabNavigation)
-  const [activeKey, setActiveKey] = useState(CoreEnums.values.CORE_ROOT)
+  const activeKey = tabNavigationState.activeKey
 
   useEffect(() => {
     // Here we set up the default Root Tab on load

@@ -10,7 +10,6 @@ const CoreTabNavigation = lazy(() => import('./core-tab-navigation'))
 export default function CoreLanding (props) {
   const LandingPageContent = useSelector(state => state.core.landingPageContent)
   const tabNavigationEnabled = useSelector(state => state.core.tabNavigation.enabled)
-  // const landingPage = !coreState.tabNavigation.enabled && coreState.landingPageContent ? <coreState.landingPageContent /> : null
 
   return (
     <Suspense fallback={<CoreLoading />}>
