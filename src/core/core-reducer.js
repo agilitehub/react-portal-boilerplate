@@ -1,9 +1,9 @@
 import CoreState from './core-state'
 import CoreEnums from './resources/enums'
+import { prepTabArray } from './core-utils'
 
 export default (state = CoreState, action) => {
   let tabArray = null
-  let index = null
 
   switch (action.type) {
     case CoreEnums.reducers.SET_TOOLBAR:
@@ -11,34 +11,7 @@ export default (state = CoreState, action) => {
         toolbar: action.payload
       })
     case CoreEnums.reducers.SET_TABS:
-      tabArray = state.tabNavigation.tabs.concat()
-
-      // If tab with same key exists, activate it by changing the activeKey
-      for (const i in tabArray) {
-        if (tabArray[i].key === action.payload.key) {
-          return Object.assign({}, state, {
-            tabNavigation: {
-              ...state.tabNavigation,
-              activeKey: action.payload.key
-            }
-          })
-        }
-      }
-
-      // If we get here, we need to add a new Tab
-      // We can group tabs together that have the same app property
-      index = tabArray.findIndex(tab => {
-        return tab.app === action.payload.app
-      })
-
-      // Increment the index to add tab immediately after tab with same app
-      index++
-
-      if (index === 0) {
-        tabArray.push(action.payload)
-      } else {
-        tabArray.splice(index, 0, action.payload)
-      }
+      tabArray = prepTabArray(state.tabNavigation.tabs, action.payload)
 
       return Object.assign({}, state, {
         tabNavigation: {
@@ -47,6 +20,23 @@ export default (state = CoreState, action) => {
           activeKey: action.payload.key
         }
       })
+    case CoreEnums.reducers.LOAD_CONTENT:
+      // Check if Tab Navigation is enabled and load component accordingly
+      if (state.tabNavigation.enabled) {
+        tabArray = prepTabArray(state.tabNavigation.tabs, action.payload)
+
+        return Object.assign({}, state, {
+          tabNavigation: {
+            ...state.tabNavigation,
+            tabs: tabArray,
+            activeKey: action.payload.key
+          }
+        })
+      } else {
+        return Object.assign({}, state, {
+          landingPageContent: action.payload.content
+        })
+      }
     default:
       return state
   }

@@ -1,7 +1,8 @@
 const CoreEnums = {
   reducers: {
     SET_TOOLBAR: 'coreSetToolbar',
-    SET_TABS: 'coreSetTabs'
+    SET_TABS: 'coreSetTabs',
+    LOAD_CONTENT: 'coreLoadComponent'
   },
   values: {
     PRODUCTION: 'production',

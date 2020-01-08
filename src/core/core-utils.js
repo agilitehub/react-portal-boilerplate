@@ -39,7 +39,8 @@ export const setupState = () => {
       tabs: [],
       activeKey: ''
     },
-    landingPageContent: AppConfig.landingPageContent,
+    rootContent: AppConfig.rootContent,
+    landingPageContent: AppConfig.rootContent,
     toolbar: {
       enabled: AppConfig.toolbar.enabled,
       state: AppConfig.toolbar.defaultState
@@ -54,4 +55,32 @@ export const setupState = () => {
   CoreMemoryStore.appLogo = AppConfig.appLogo
 
   return state
+}
+
+export const prepTabArray = (tabArray, payload) => {
+  let index = null
+
+  // If tab with same key exists, activate it by changing the activeKey
+  for (const i in tabArray) {
+    if (tabArray[i].key === payload.key) {
+      return tabArray
+    }
+  }
+
+  // If we get here, we need to add a new Tab
+  // We can group tabs together that have the same app property
+  index = tabArray.findIndex(tab => {
+    return tab.app === payload.app
+  })
+
+  // Increment the index to add tab immediately after tab with same app
+  index++
+
+  if (index === 0) {
+    tabArray.push(payload)
+  } else {
+    tabArray.splice(index, 0, payload)
+  }
+
+  return tabArray
 }

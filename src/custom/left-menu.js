@@ -11,7 +11,7 @@ const SubMenu = Menu.SubMenu
 export default function LeftMenu (props) {
   const dispatch = useDispatch()
   const rootTabTitle = useSelector(state => state.core.tabNavigation.rootTabTitle)
-  const rootTabContent = useSelector(state => state.core.tabNavigation.rootTabContent)
+  const rootContent = useSelector(state => state.core.rootContent)
 
   function handleLeftMenu (e) {
     const key = e.key
@@ -20,13 +20,12 @@ export default function LeftMenu (props) {
     // MODULECONDITION
     switch (key) {
       case CoreEnums.values.CORE_ROOT:
-        Content = rootTabContent
-        props.handleCloseLeftMenu()
+        Content = rootContent
 
         dispatch({
-          type: CoreEnums.reducers.SET_TABS,
+          type: CoreEnums.reducers.LOAD_CONTENT,
           payload: {
-            content: <Content />,
+            content: Content,
             title: rootTabTitle,
             key,
             app: key,
@@ -37,12 +36,11 @@ export default function LeftMenu (props) {
         break
       case 'module1':
         Content = require('./module1-content').default
-        props.handleCloseLeftMenu()
 
         dispatch({
-          type: CoreEnums.reducers.SET_TABS,
+          type: CoreEnums.reducers.LOAD_CONTENT,
           payload: {
-            content: <Content />,
+            content: Content,
             title: 'Module 1',
             key,
             app: key,
@@ -55,6 +53,8 @@ export default function LeftMenu (props) {
         // Do Nothing
         return null
     }
+
+    props.handleCloseLeftMenu()
   }
 
   return (
