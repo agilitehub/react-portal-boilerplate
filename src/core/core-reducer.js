@@ -1,6 +1,6 @@
 import CoreState from './core-state'
 import CoreEnums from './resources/enums'
-import { prepTabArray } from './core-utils'
+import { setupState, prepTabArray } from './core-utils'
 
 export default (state = CoreState, action) => {
   let tabArray = null
@@ -37,6 +37,8 @@ export default (state = CoreState, action) => {
           landingPageContent: action.payload.content
         })
       }
+    case CoreEnums.reducers.RESET:
+      return Object.assign({}, state, setupState())
     default:
       return state
   }

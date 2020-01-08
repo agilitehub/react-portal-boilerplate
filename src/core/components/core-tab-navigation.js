@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Tabs } from 'antd'
 
@@ -11,8 +11,8 @@ export default function CoreTabNavigation () {
   const tabNavigationState = useSelector(state => state.core.tabNavigation)
   const activeKey = tabNavigationState.activeKey
 
-  useEffect(() => {
-    // Here we set up the default Root Tab on load
+  // Here we set up the default Root Tab on load and if tabs array is empty
+  if (tabNavigationState.tabs.length === 0) {
     dispatch({
       type: CoreEnums.reducers.SET_TABS,
       payload: {
@@ -24,7 +24,7 @@ export default function CoreTabNavigation () {
         custom: {}
       }
     })
-  }, [])
+  }
 
   // useEffect(() => {
   //   if (props.activeKey !== activeKey) {

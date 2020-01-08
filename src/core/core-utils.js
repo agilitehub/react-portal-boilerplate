@@ -40,7 +40,7 @@ export const setupState = () => {
       activeKey: ''
     },
     rootContent: AppConfig.rootContent,
-    landingPageContent: AppConfig.rootContent,
+    landingPageContent: null,
     toolbar: {
       enabled: AppConfig.toolbar.enabled,
       state: AppConfig.toolbar.defaultState

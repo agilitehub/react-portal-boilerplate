@@ -25,10 +25,11 @@ export default function LeftMenu (props) {
         dispatch({
           type: CoreEnums.reducers.LOAD_CONTENT,
           payload: {
-            content: Content,
+            content: <Content />,
             title: rootTabTitle,
             key,
             app: key,
+            closable: false,
             custom: {}
           }
         })
@@ -40,12 +41,19 @@ export default function LeftMenu (props) {
         dispatch({
           type: CoreEnums.reducers.LOAD_CONTENT,
           payload: {
-            content: Content,
+            content: <Content />,
             title: 'Module 1',
             key,
             app: key,
+            closable: true,
             custom: {}
           }
+        })
+
+        break
+      case 'reset':
+        dispatch({
+          type: CoreEnums.reducers.RESET
         })
 
         break
@@ -92,8 +100,8 @@ export default function LeftMenu (props) {
           </span>
         }
       >
-        <Menu.Item key='about'>
-          <FontAwesomeIcon icon={faFileAlt} /> About
+        <Menu.Item key='reset'>
+          <FontAwesomeIcon icon={faFileAlt} /> Sign Out
         </Menu.Item>
       </SubMenu>
     </Menu>
