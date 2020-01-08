@@ -1,10 +1,11 @@
 const CoreEnums = {
   reducers: {
-    SET_TOOLBAR: 'coreSetToolbar'
+    SET_TOOLBAR: 'coreSetToolbar',
+    SET_TABS: 'coreSetTabs'
   },
   values: {
     PRODUCTION: 'production',
-    ROOT: 'root',
+    CORE_ROOT: 'core-root',
     AUTHENTICATING: 'authenticating',
     AUTHENTICATED: 'authenticated'
   },

@@ -1,25 +1,30 @@
-import React, { useState } from 'react'
-import { Tabs, Modal } from 'antd'
-// import CoreTabHome from './core-tab-home'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Tabs } from 'antd'
 
-// import MemoryStore from '../../resources/memory-store'
-// import CoreEnums from '../resources/enums'
+import CoreEnums from '../resources/enums'
 
 const TabPane = Tabs.TabPane
 
-export default function CoreLanding (props) {
-  // const [activeKey, setActiveKey] = useState(props.activeKey)
+export default function CoreTabNavigation () {
+  const dispatch = useDispatch()
+  const tabNavigationState = useSelector(state => state.core.tabNavigation)
+  const [activeKey, setActiveKey] = useState(CoreEnums.values.CORE_ROOT)
 
-  // useEffect(() => {
-  //   this.props.addTab({
-  //     content: <CoreTabHome />,
-  //     title: CoreEnums.values.HOME,
-  //     key: CoreEnums.facets.HOME,
-  //     app: CoreEnums.facets.HOME,
-  //     tabType: '',
-  //     closable: false
-  //   })
-  // }, [])
+  useEffect(() => {
+    // Here we set up the default Root Tab on load
+    dispatch({
+      type: CoreEnums.reducers.SET_TABS,
+      payload: {
+        content: <tabNavigationState.rootTabContent />,
+        title: tabNavigationState.rootTabTitle,
+        key: CoreEnums.values.CORE_ROOT,
+        app: CoreEnums.values.CORE_ROOT,
+        closable: false,
+        custom: {}
+      }
+    })
+  }, [])
 
   // useEffect(() => {
   //   if (props.activeKey !== activeKey) {
@@ -76,30 +81,25 @@ export default function CoreLanding (props) {
   // }
 
   return (
-    <div className='content-wrapper'>
-      <Tabs
-        type='editable-card'
-        hideAdd
-        activeKey={this.state.activeKey}
-        onEdit={this.handlePromptTabClose}
-        onChange={this.handleOnChange}
-        tabBarStyle={{ textAlign: 'left' }}
-        animated={false}
-      >
-        {this.props.tabs.map(pane => (
-          <TabPane
-            forceRender
-            tab={pane.title}
-            key={pane.key}
-            closable={pane.closable}
-          >
-            {pane.content}
-            <div style={{ width: '100%', height: 50 }}>
-              {/* This is used to create spacing below cards when resolution is around 1280 x 720 */}
-            </div>
-          </TabPane>
-        ))}
-      </Tabs>
-    </div>
+    <Tabs
+      type='editable-card'
+      hideAdd
+      activeKey={activeKey}
+      // onEdit={this.handlePromptTabClose}
+      // onChange={this.handleOnChange}
+      tabBarStyle={{ textAlign: 'left' }}
+      animated={false}
+    >
+      {tabNavigationState.tabs.map(pane => (
+        <TabPane
+          forceRender
+          tab={pane.title}
+          key={pane.key}
+          closable={pane.closable}
+        >
+          {pane.content}
+        </TabPane>
+      ))}
+    </Tabs>
   )
 }

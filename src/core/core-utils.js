@@ -37,9 +37,7 @@ export const setupState = () => {
     tabNavigation: {
       ...AppConfig.tabNavigation,
       tabs: [],
-      activeKey: '',
-      activeApp: '',
-      tabType: ''
+      activeKey: ''
     },
     landingPageContent: AppConfig.landingPageContent,
     toolbar: {

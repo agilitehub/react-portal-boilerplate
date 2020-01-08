@@ -15,14 +15,14 @@ import 'antd/dist/antd.css'
 import './resources/style.css'
 
 const indexReducerWrapper = combineReducers(setupReducers())
-const devTools = process.env.NODE_ENV !== CoreEnums.values.PRODUCTION ? applyMiddleware(thunk) : composeWithDevTools(applyMiddleware(thunk))
+const devTools = process.env.NODE_ENV === CoreEnums.values.PRODUCTION ? applyMiddleware(thunk) : composeWithDevTools(applyMiddleware(thunk))
 const store = createStore(indexReducerWrapper, {}, devTools)
 
 ReactDOM.render(
   <Provider store={store}>
     <CoreApp />
   </Provider>,
-  document.getElementById(CoreEnums.values.ROOT)
+  document.getElementById(CoreEnums.values.CORE_ROOT)
 )
 
 export const eventEmitter = new EventEmitter()
