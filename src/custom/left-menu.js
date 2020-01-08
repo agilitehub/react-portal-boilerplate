@@ -47,9 +47,7 @@ export default function LeftMenu (props) {
             app: key,
             closable: true,
             handleOnEdit: (targetKey, callback) => {
-              console.log('Im being called')
-              alert('Im handling the edit')
-              const result = false
+              const result = true
               callback(result)
             },
             custom: {}

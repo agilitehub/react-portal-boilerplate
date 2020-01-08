@@ -46,38 +46,16 @@ export default function CoreTabNavigation () {
     }
   }
 
-  // handleOnChange (key) {
-  //   props.changeTab(key, props.tabs)
-  // }
-
-  // handlePromptTabClose (key) {
-  //   let tmpValue = false
-
-  //   // Loop through the activeEntries
-  //   for (const x in MemoryStore.activeEntries) {
-  //     // if the current tab key that was passed matches the activeEntry id
-  //     if (key === MemoryStore.activeEntries[x]._id) {
-  //       // if the activeEntry is modified
-  //       if (MemoryStore.activeEntries[x].custom.isModified) {
-  //         tmpValue = true
-  //       }
-  //     }
-  //   }
-
-  //   if (tmpValue) {
-  //     Modal.confirm({
-  //       onOk: () => this.handleOnEdit(key),
-  //       okText: CoreEnums.values.YES_PROPER,
-  //       cancelText: CoreEnums.values.NO_PROPER,
-  //       content: CoreEnums.messages.CANCEL_CONTENT,
-  //       title: CoreEnums.values.CONFIRMATION,
-  //       centered: true,
-  //       width: 500
-  //     })
-  //   } else {
-  //     this.handleOnEdit(key)
-  //   }
-  // }
+  // Executed when changing tabs
+  function handleOnChange (targetKey) {
+    dispatch({
+      type: CoreEnums.reducers.SET_TABS,
+      tabs: tabNavigationState.tabs,
+      payload: {
+        key: targetKey
+      }
+    })
+  }
 
   return (
     <Tabs
@@ -85,7 +63,7 @@ export default function CoreTabNavigation () {
       hideAdd
       activeKey={activeKey}
       onEdit={handleOnEdit}
-      // onChange={this.handleOnChange}
+      onChange={handleOnChange}
       tabBarStyle={{ textAlign: 'left' }}
       animated={false}
     >
