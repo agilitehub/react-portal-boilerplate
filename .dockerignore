@@ -1,16 +1,12 @@
-
 .git
-.firebase
 .vscode
 cypress
 node_modules
 public
 src
 .dockerignore
-.firebaserc
 .gitignore
 cypress.json
 Dockerfile
-firebase.json
 package-lock.json
 README.md

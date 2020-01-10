@@ -38,7 +38,7 @@ export default function CoreToolbar (props) {
           className='toolbar-header'
         >
           <div className='header-content'>
-            {props.leftMenu.enabled ? (
+            {props.leftMenuEnabled ? (
               <FontAwesomeIcon
                 icon={faBars}
                 className='menu-left'
@@ -54,7 +54,7 @@ export default function CoreToolbar (props) {
             {props.customMenu2 ? (
               <props.customMenu2 />
             ) : null}
-            {props.rightMenu.enabled ? (
+            {props.rightMenuEnabled ? (
               <FontAwesomeIcon
                 icon={faBars}
                 className='menu-right'
@@ -64,9 +64,9 @@ export default function CoreToolbar (props) {
           </div>
         </Header>
       </Layout>
-      {props.leftMenu.enabled ? (
+      {props.leftMenuEnabled ? (
         <Drawer
-          title={props.leftMenu.title}
+          title={props.leftMenuTitle}
           placement='left'
           closable={false}
           width={300}
@@ -75,14 +75,14 @@ export default function CoreToolbar (props) {
           style={{ '--primary': CoreMemoryStore.theme.primary, '--white': CoreMemoryStore.theme.white, '--whiteGrey': CoreMemoryStore.theme.whiteGrey }}
           className='menu-drawer'
         >
-          {props.leftMenu.enabled && props.leftMenu.content ? (
-            <props.leftMenu.content handleCloseLeftMenu={handleCloseLeftMenu} />
+          {props.leftMenuEnabled && props.leftMenuContent ? (
+            <props.leftMenuContent handleCloseLeftMenu={handleCloseLeftMenu} />
           ) : null}
         </Drawer>
       ) : null}
-      {props.rightMenu.enabled ? (
+      {props.rightMenuEnabled ? (
         <Drawer
-          title={props.rightMenu.title}
+          title={props.rightMenuTitle}
           placement='right'
           closable={false}
           width={300}
@@ -91,8 +91,8 @@ export default function CoreToolbar (props) {
           style={{ '--primary': CoreMemoryStore.theme.primary, '--white': CoreMemoryStore.theme.white, '--whiteGrey': CoreMemoryStore.theme.whiteGrey }}
           className='menu-drawer'
         >
-          {props.rightMenu.enabled && props.rightMenu.content ? (
-            <props.rightMenu.content handleCloseRightMenu={handleCloseRightMenu} />
+          {props.rightMenuEnabled && props.rightMenuContent ? (
+            <props.rightMenuContent handleCloseRightMenu={handleCloseRightMenu} />
           ) : null}
         </Drawer>
       ) : null}
