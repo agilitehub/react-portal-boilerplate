@@ -9,7 +9,7 @@ import CoreEnums from '../resources/enums'
 import CoreLoading from './core-loading'
 
 // LAZY COMPONENTS
-const CoreToolbar = lazy(() => import('../components/core-toolbar'))
+const CoreToolbarContainer = lazy(() => import('../containers/core-toolbar-container'))
 const CoreLanding = lazy(() => import('../components/core-landing'))
 
 export default function CoreApp () {
@@ -31,7 +31,7 @@ export default function CoreApp () {
     <Row type='flex' justify='center'>
       <Col xs={24} sm={24} md={24} lg={24}>
         <Suspense fallback={<CoreLoading />}>
-          {toolbarEnabled ? <CoreToolbar /> : null}
+          {toolbarEnabled ? <CoreToolbarContainer /> : null}
           <CoreLanding />
         </Suspense>
       </Col>
