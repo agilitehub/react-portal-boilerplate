@@ -53,7 +53,6 @@ export const setupState = () => {
   CoreMemoryStore.title = title
   CoreMemoryStore.theme = theme
   CoreMemoryStore.enableOnUnloadPrompt = AppConfig.enableOnUnloadPrompt
-  CoreMemoryStore.appLogo = AppConfig.appLogo
 
   return state
 }

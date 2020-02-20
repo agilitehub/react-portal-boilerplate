@@ -34,18 +34,6 @@ const AppConfig = {
       customMenu1: null,
       customMenu2: null
     }
-  },
-  custom: {
-    appLogo: {
-      image: require('./core/resources/agilite-logo-full-web.png'),
-      title: 'Agilit-e',
-      href: 'https://agilite.io'
-    },
-    reCaptchaTokens: {
-      enabled: false,
-      v3_siteKey: '',
-      v2_siteKey: ''
-    }
   }
 }
 
