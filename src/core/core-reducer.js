@@ -39,6 +39,8 @@ export default (state = CoreState, action) => {
       }
     case CoreEnums.reducers.RESET:
       return Object.assign({}, state, setupState())
+    case CoreEnums.reducers.SET_STATE:
+      return Object.assign({}, state, action.state)
     default:
       return state
   }

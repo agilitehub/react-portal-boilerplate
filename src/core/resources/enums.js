@@ -3,7 +3,8 @@ const CoreEnums = {
     SET_TOOLBAR: 'coreSetToolbar',
     SET_TABS: 'coreSetTabs',
     LOAD_CONTENT: 'coreLoadComponent',
-    RESET: 'coreReset'
+    RESET: 'coreReset',
+    SET_STATE: 'coreSetState'
   },
   values: {
     PRODUCTION: 'production',
