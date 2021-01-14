@@ -1,7 +1,7 @@
 {
     "name": "agilite-react-portal-boilerplate",
     "description": "A ReactJS Single Page Application portal sponsored by Agilit-e",
-    "version": "7.1.0",
+    "version": "2.0.0",
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
