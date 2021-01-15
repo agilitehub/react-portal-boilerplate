@@ -1,4 +1,4 @@
-FROM node:12.13.1-alpine
+FROM node:12.18.4-alpine
 ENV PORT 80
 EXPOSE 80
 

@@ -1,48 +1,50 @@
 {
-    "name": "agilite-react-portal-boilerplate",
-    "description": "A ReactJS Single Page Application portal sponsored by Agilit-e",
-    "version": "2.0.0",
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "cypress:open": "cypress open"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": [
-        ">0.2%",
-        "not dead",
-        "not ie <= 11",
-        "not op_mini all"
+  "name": "agilite-react-portal-boilerplate",
+  "description": "A ReactJS Single Page Application portal sponsored by Agilit-e",
+  "version": "3.0.0",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ],
-    "engines": {
-        "node": "12.13.1"
-    },
-    "dependencies": {
-        "agilite-utils": "7.0.11",
-        "compression": "1.7.4",
-        "express": "4.17.1"
-    },
-    "devDependencies": {
-        "@fortawesome/fontawesome-svg-core": "1.2.28",
-        "@fortawesome/free-solid-svg-icons": "5.13.0",
-        "@fortawesome/react-fontawesome": "0.1.10",
-        "@types/agilite": "6.4.0",
-        "agilite": "6.8.1",
-        "antd": "4.3.3",
-        "babel-plugin-import": "1.13.0",
-        "cypress": "4.8.0",
-        "eventemitter3": "4.0.4",
-        "react": "16.13.1",
-        "react-dom": "16.13.1",
-        "react-google-recaptcha-v3": "1.5.2",
-        "react-redux": "7.2.0",
-        "react-scripts": "3.4.1",
-        "redux": "4.0.5",
-        "redux-devtools-extension": "2.13.8",
-        "redux-thunk": "2.3.0"
-    }
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": "12.18.4"
+  },
+  "dependencies": {
+    "agilite-utils": "7.2.12",
+    "compression": "1.7.4",
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "agilite-react": "2.0.0",
+    "@fortawesome/fontawesome-svg-core": "1.2.34",
+    "@fortawesome/free-solid-svg-icons": "5.15.2",
+    "@fortawesome/react-fontawesome": "0.1.14",
+    "@types/agilite": "6.4.0",
+    "agilite": "7.2.6",
+    "antd": "4.10.2",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-redux": "7.2.2",
+    "react-scripts": "4.0.1",
+    "redux": "4.0.5",
+    "redux-devtools-extension": "2.13.8",
+    "redux-thunk": "2.3.0"
+  }
 }
