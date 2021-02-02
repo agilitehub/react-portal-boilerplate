@@ -1,7 +1,0 @@
-{
-  "appName": "Agilit-e React Portal Boilerplate",
-  "agilite": {
-    "apiServerUrl": "https://apidemo.agilite.io",
-    "nodeRedUrl": "http://localhost:6011"
-  }
-}

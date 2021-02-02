@@ -1,10 +1,7 @@
-import { eventEmitter } from './core/core-index'
-import AppConfig from './app-config'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { AgiliteReact } from 'agilite-react'
 
-require('./core/core-index')
+import AgiliteReactConfig from './configs/agilite-react-config'
 
-if (AppConfig.enableCustomIndex) {
-  require('./custom/index')
-}
-
-eventEmitter.emit('onappload')
+ReactDOM.render(<AgiliteReact config={AgiliteReactConfig} />, document.getElementById('root'))

@@ -17,4 +17,4 @@ app.get('/', (req, res) => { res.sendFile(Path.join(__dirname, '/build/index.htm
 // Server Setup
 const port = process.env.PORT || 80
 const server = HTTP.createServer(app)
-server.listen(port, () => { console.log(`${process.env.REACT_APP_NAME} listening on Port - ${port}`) })
+server.listen(port, () => { console.log(`${process.env.REACT_APP_NAME} (${process.env.REACT_APP_VERSION}) listening on Port - ${port}`) })
