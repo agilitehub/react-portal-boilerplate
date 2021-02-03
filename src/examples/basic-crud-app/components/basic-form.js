@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Card, Row, Col, Form, Input, Select, Button } from 'antd'
 import { useDispatch } from 'react-redux'
 
 import BasicCRUDAppEnums from '../enums'
 import AgiliteReactEnums from '../../../agilite-react/enums'
+import Theme from '../../../agilite-react/theme'
 
-const BasicForm = () => {
+const BasicForm = ({ data, isNewRecord }) => {
   const dispatch = useDispatch()
-  const [record, setRecord] = useState({
-    name: '',
-    description: '',
-    gender: '',
-    age: ''
-  })
+  const [record, setRecord] = useState(data)
 
   const handleChange = (key, value) => {
     setRecord(prevState => ({
@@ -22,13 +18,16 @@ const BasicForm = () => {
   }
 
   const handleSubmit = () => {
-    dispatch({ type: BasicCRUDAppEnums.reducers.ADD_RECORD, payload: record })
-    dispatch({ type: AgiliteReactEnums.reducers.CLOSE_TAB, key: 'new_record' })
+    dispatch({
+      type: isNewRecord ? BasicCRUDAppEnums.reducers.ADD_RECORD : BasicCRUDAppEnums.reducers.EDIT_RECORD,
+      payload: record
+    })
+    closeTab()
   }
 
-  useEffect(() => {
-    console.log('basic-form')
-  })
+  const closeTab = () => {
+    dispatch({ type: AgiliteReactEnums.reducers.CLOSE_TAB, key: isNewRecord ? 'new_record' : record.id })
+  }
 
   return (
     <Row justify='center'>
@@ -50,7 +49,7 @@ const BasicForm = () => {
             <Row justify='space-between'>
               <Col span={10}>
                 <Form.Item>
-                  <span style={{ color: '#DC3645' }}>* </span>Name
+                  <span style={{ color: Theme.twitterBootstrap.danger }}>* </span>Name
                   <Form.Item
                     noStyle
                     name='name'
@@ -60,7 +59,7 @@ const BasicForm = () => {
                   </Form.Item>
                 </Form.Item>
                 <Form.Item>
-                  <span style={{ color: '#DC3645' }}>* </span>Age
+                  <span style={{ color: Theme.twitterBootstrap.danger }}>* </span>Age
                   <Form.Item
                     noStyle
                     name='age'
@@ -70,7 +69,7 @@ const BasicForm = () => {
                   </Form.Item>
                 </Form.Item>
                 <Form.Item>
-                  <span style={{ color: '#DC3645' }}>* </span>Gender
+                  <span style={{ color: Theme.twitterBootstrap.danger }}>* </span>Gender
                   <Form.Item
                     noStyle
                     name='gender'
@@ -103,12 +102,15 @@ const BasicForm = () => {
             </Row>
             <Row style={{ marginTop: 10 }}>
               <Form.Item noStyle>
-                <Button style={{ backgroundColor: '#29A745', color: 'white', marginRight: 10 }} htmlType='submit'>
+                <Button style={{ backgroundColor: Theme.twitterBootstrap.success, color: 'white', marginRight: 10 }} htmlType='submit'>
                   Submit
                 </Button>
               </Form.Item>
               <Form.Item noStyle>
-                <Button style={{ backgroundColor: '#DC3645', color: 'white' }}>
+                <Button
+                  style={{ backgroundColor: Theme.twitterBootstrap.danger, color: 'white' }}
+                  onClick={closeTab}
+                >
                   Cancel
                 </Button>
               </Form.Item>

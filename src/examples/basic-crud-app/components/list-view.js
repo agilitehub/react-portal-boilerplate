@@ -1,47 +1,26 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Row, Col, Card, Button, Tooltip, Table, Popconfirm } from 'antd'
 import { SyncOutlined, DeleteOutlined } from '@ant-design/icons'
-import { useDispatch, useSelector } from 'react-redux'
 
-import Enums from '../../../agilite-react/enums'
+import Theme from '../../../agilite-react/theme'
 
-import BasicForm from './basic-form'
-
-const ListView = () => {
-  const dispatch = useDispatch()
-  const data = useSelector(state => state.basicCRUDApp.data)
-
-  useEffect(() => {
-    console.log('list-view')
-  })
-
-  const createRecord = () => {
-    dispatch({
-      type: Enums.reducers.ADD_TAB,
-      tab: {
-        key: 'new_record',
-        closable: true,
-        title: 'New Record',
-        content: <BasicForm />
-      }
-    })
-  }
-
+const ListView = ({ data, refreshView, createRecord, editRecord, deleteRecord }) => {
   return (
     <Row justify='center'>
       <Col span={24}>
         <Card title='List View' type='inner'>
           <Button
             onClick={createRecord}
-            style={{ backgroundColor: '#29A745', color: 'white' }}
+            style={{ backgroundColor: Theme.twitterBootstrap.success, color: 'white' }}
           >
             Create New
           </Button>
           <Button
             style={{ float: 'right' }}
+            onClick={refreshView}
           >
             <Tooltip title='Refresh'>
-              <SyncOutlined style={{ fontSize: 19, color: '#29A745', marginTop: 2 }} />
+              <SyncOutlined style={{ fontSize: 19, color: Theme.twitterBootstrap.success, marginTop: 2 }} />
             </Tooltip>
           </Button>
           <Table
@@ -53,7 +32,15 @@ const ListView = () => {
               {
                 title: 'Name',
                 dataIndex: 'name',
-                key: 'name'
+                key: 'name',
+                render: (text, record) => {
+                  return (
+                    // eslint-disable-next-line
+                    <a onClick={() => editRecord(record)}>
+                      {text}
+                    </a>
+                  )
+                }
               },
               {
                 title: 'Description',
@@ -80,9 +67,10 @@ const ListView = () => {
                       title='Are you sure you want to delete this record?'
                       okText='Yes'
                       cancelText='No'
+                      onConfirm={() => deleteRecord(record.id)}
                     >
                       <DeleteOutlined
-                        style={{ cursor: 'pointer', color: '#DC3645' }}
+                        style={{ cursor: 'pointer', color: Theme.twitterBootstrap.danger }}
                       />
                     </Popconfirm>
                   )

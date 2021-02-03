@@ -2,6 +2,8 @@ import State from './state'
 import Enums from './enums'
 import { closeTab, addTab } from './controller'
 
+import AppWrapper from '../examples/basic-crud-app/components/app-wrapper'
+
 const reducer = (state = State, action) => {
   let tmpObj = null
 
@@ -26,6 +28,37 @@ const reducer = (state = State, action) => {
           ...tmpObj
         }
       }
+    case Enums.reducers.LEFT_MENU_OPEN:
+      return {
+        ...state,
+        leftMenu: {
+          ...state.leftMenu,
+          visible: true
+        }
+      }
+    case Enums.reducers.LEFT_MENU_CLOSE:
+      return {
+        ...state,
+        leftMenu: {
+          ...state.leftMenu,
+          visible: false
+        }
+      }
+    case Enums.reducers.MENU_ITEM_CLICK:
+      switch (action.key) {
+        case Enums.menuItems.BASIC_CRUD_APP.key:
+          tmpObj = {
+            key: action.key,
+            closeable: true,
+            title: 'List View',
+            content: <AppWrapper />
+          }
+          break
+        default:
+          break
+      }
+
+      return addTab(action.key, tmpObj, state)
     default:
       return state
   }

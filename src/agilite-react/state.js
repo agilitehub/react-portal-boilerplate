@@ -1,25 +1,28 @@
+import { handleMenuItemClick, handleMenuAction, handleTabAction } from './controller'
 import Enums from './enums'
-import Store from '../store'
-
-// Components
-import ListView from '../examples/basic-crud-app/components/list-view'
+import Theme from './theme'
 
 const state = {
-  rootContent: ListView,
   tabNavigation: {
     enabled: true,
-    rootTabKey: 'list_view',
-    rootTabTitle: 'List View',
-    activeKey: 'list_view',
+    rootTabKey: 'home',
+    rootTabTitle: 'Home',
+    activeKey: 'home',
     tabs: [],
     animated: false,
-    onTabChange: key => { // TODO: These need to exist in the controller
-      Store.dispatch({ type: Enums.reducers.CHANGE_TAB, key })
-    },
-    onTabClose: key => {
-      Store.dispatch({ type: Enums.reducers.CLOSE_TAB, key })
-    }
-  }
+    onTabChange: key => handleTabAction('change', key),
+    onTabClose: key => handleTabAction('close', key)
+  },
+  leftMenu: {
+    enabled: true,
+    visible: false,
+    title: 'Apps',
+    menuItems: [Enums.menuItems.BASIC_CRUD_APP],
+    handleMenuItemClick: event => handleMenuItemClick(event),
+    onOpen: () => handleMenuAction('open'),
+    onClose: () => handleMenuAction('close')
+  },
+  theme: Theme
 }
 
 export default state
