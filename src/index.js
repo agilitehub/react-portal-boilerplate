@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import { Provider, useSelector } from 'react-redux'
 import { AgiliteReact } from 'agilite-react'
 
-import AgiliteReactConfig from './configs/agilite-react-config'
+import Store from './store'
 
-ReactDOM.render(<AgiliteReact config={AgiliteReactConfig} />, document.getElementById('root'))
+// Initialize App
+const App = () => {
+  const state = useSelector(state => state.agiliteReact)
+  useEffect(() => {
+    console.log('App')
+  })
+  return <AgiliteReact state={state} />
+}
+
+ReactDOM.render(<Provider store={Store}><App /></Provider>, document.getElementById('root'))
