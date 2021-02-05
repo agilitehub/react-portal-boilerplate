@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import { Card, Row, Col, Form, Input, Select, Button } from 'antd'
 import { useDispatch } from 'react-redux'
 
@@ -6,7 +6,7 @@ import BasicCRUDAppEnums from '../enums'
 import AgiliteReactEnums from '../../../agilite-react/enums'
 import Theme from '../../../agilite-react/theme'
 
-const BasicForm = ({ data, isNewRecord }) => {
+const _BasicForm = ({ data, isNewRecord }) => {
   const dispatch = useDispatch()
   const [record, setRecord] = useState(data)
 
@@ -121,5 +121,7 @@ const BasicForm = ({ data, isNewRecord }) => {
     </Row>
   )
 }
+
+const BasicForm = memo(_BasicForm)
 
 export default BasicForm

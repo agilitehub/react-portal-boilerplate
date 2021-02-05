@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Row, Col, Card, Button, Tooltip, Table, Popconfirm } from 'antd'
 import { SyncOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import Theme from '../../../agilite-react/theme'
 
-const ListView = ({ data, refreshView, createRecord, editRecord, deleteRecord }) => {
+const _ListView = ({ data, refreshView, createRecord, editRecord, deleteRecord }) => {
   return (
     <Row justify='center'>
       <Col span={24}>
@@ -83,5 +83,7 @@ const ListView = ({ data, refreshView, createRecord, editRecord, deleteRecord })
     </Row>
   )
 }
+
+const ListView = memo(_ListView)
 
 export default ListView

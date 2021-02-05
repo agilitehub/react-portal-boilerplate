@@ -1,8 +1,10 @@
+import React, { lazy, Suspense } from 'react'
 import State from './state'
 import Enums from './enums'
 import { closeTab, addTab } from './controller'
+import { Spin } from 'antd'
 
-import AppWrapper from '../examples/basic-crud-app/components/app-wrapper'
+const AppWrapper = lazy(() => import('../examples/basic-crud-app/components/app-wrapper'))
 
 const reducer = (state = State, action) => {
   let tmpObj = null
@@ -51,7 +53,11 @@ const reducer = (state = State, action) => {
             key: action.key,
             closeable: true,
             title: 'List View',
-            content: <AppWrapper />
+            content: (
+              <Suspense fallback={<Spin>Loading</Spin>}>
+                <AppWrapper />
+              </Suspense>
+            )
           }
           break
         default:

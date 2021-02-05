@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { lazy, Suspense, memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
-import ListView from './list-view'
-import BasicForm from './basic-form'
 
 import AgiliteReactEnums from '../../../agilite-react/enums'
 import BasicCRUDAppEnums from '../enums'
+import { Spin } from 'antd'
 
-const AppWrapper = () => {
+const ListView = lazy(() => import('./list-view'))
+const BasicForm = lazy(() => import('./basic-form'))
+
+const _AppWrapper = () => {
   const dispatch = useDispatch()
   const viewData = useSelector(state => state.basicCRUDApp.data)
 
@@ -23,16 +24,18 @@ const AppWrapper = () => {
         closable: true,
         title: 'New Record',
         content: (
-          <BasicForm
-            data={{
-              id: `${Date.now()}`,
-              name: '',
-              description: '',
-              gender: '',
-              age: ''
-            }}
-            isNewRecord
-          />
+          <Suspense fallback={<Spin>Loading</Spin>}>
+            <BasicForm
+              data={{
+                id: `${Date.now()}`,
+                name: '',
+                description: '',
+                gender: '',
+                age: ''
+              }}
+              isNewRecord
+            />
+          </Suspense>
         )
       }
     })
@@ -45,7 +48,11 @@ const AppWrapper = () => {
         key: record.id,
         closable: true,
         title: `Record: ${record.name}`,
-        content: <BasicForm data={record} isNewRecord={false} />
+        content: (
+          <Suspense fallback={<Spin>Loading</Spin>}>
+            <BasicForm data={record} isNewRecord={false} />
+          </Suspense>
+        )
       }
     })
   }
@@ -55,8 +62,12 @@ const AppWrapper = () => {
   }
 
   return (
-    <ListView data={viewData} createRecord={createRecord} editRecord={editRecord} deleteRecord={deleteRecord} refreshView={refreshView} />
+    <Suspense fallback={<Spin>Loading</Spin>}>
+      <ListView data={viewData} createRecord={createRecord} editRecord={editRecord} deleteRecord={deleteRecord} refreshView={refreshView} />
+    </Suspense>
   )
 }
+
+const AppWrapper = memo(_AppWrapper)
 
 export default AppWrapper
