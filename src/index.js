@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider, useSelector } from 'react-redux'
-import { AgiliteReact } from 'agilite-react'
+import AgiliteReact from 'agilite-react'
 
 import Store from './store'
 

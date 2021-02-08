@@ -14,13 +14,13 @@ const state = {
     onTabClose: key => handleTabAction('close', key)
   },
   leftMenu: {
-    enabled: true,
+    leftMenuEnabled: true,
     visible: false,
-    title: 'Apps',
+    leftMenuTitle: 'Apps',
     menuItems: [Enums.menuItems.BASIC_CRUD_APP],
-    handleMenuItemClick: event => handleMenuItemClick(event),
-    onOpen: () => handleMenuAction('open'),
-    onClose: () => handleMenuAction('close')
+    handleLeftMenuItemClick: event => handleMenuItemClick(event),
+    onOpenLeftMenu: () => handleMenuAction('open'),
+    onCloseLeftMenu: () => handleMenuAction('close')
   },
   theme: Theme
 }
