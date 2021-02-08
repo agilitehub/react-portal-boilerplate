@@ -54,7 +54,7 @@ const reducer = (state = State, action) => {
             closeable: true,
             title: 'List View',
             content: (
-              <Suspense fallback={<Spin>Loading</Spin>}>
+              <Suspense fallback={<Spin>Loading...</Spin>}>
                 <AppWrapper />
               </Suspense>
             )

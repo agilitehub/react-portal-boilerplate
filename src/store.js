@@ -5,6 +5,9 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import agiliteReactReducer from './agilite-react/reducer'
 import basicCRUDAppReducer from './examples/basic-crud-app/reducer'
 
-const store = createStore(combineReducers({ agiliteReact: agiliteReactReducer, basicCRUDApp: basicCRUDAppReducer }), applyMiddleware(Thunk))
+const store = createStore(combineReducers({
+  agiliteReact: agiliteReactReducer,
+  basicCRUDApp: basicCRUDAppReducer
+}), applyMiddleware(Thunk))
 
 export default store

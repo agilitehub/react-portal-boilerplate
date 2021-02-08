@@ -24,7 +24,7 @@ const _AppWrapper = () => {
         closable: true,
         title: 'New Record',
         content: (
-          <Suspense fallback={<Spin>Loading</Spin>}>
+          <Suspense fallback={<Spin>Loading...</Spin>}>
             <BasicForm
               data={{
                 id: `${Date.now()}`,
@@ -49,7 +49,7 @@ const _AppWrapper = () => {
         closable: true,
         title: `Record: ${record.name}`,
         content: (
-          <Suspense fallback={<Spin>Loading</Spin>}>
+          <Suspense fallback={<Spin>Loading...</Spin>}>
             <BasicForm data={record} isNewRecord={false} />
           </Suspense>
         )
@@ -62,7 +62,7 @@ const _AppWrapper = () => {
   }
 
   return (
-    <Suspense fallback={<Spin>Loading</Spin>}>
+    <Suspense fallback={<Spin>Loading...</Spin>}>
       <ListView data={viewData} createRecord={createRecord} editRecord={editRecord} deleteRecord={deleteRecord} refreshView={refreshView} />
     </Suspense>
   )
