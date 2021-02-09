@@ -6,7 +6,8 @@ import Store from '../store'
 import AgiliteReactEnums from './resources/enums'
 
 // Components
-import AppWrapper from '../examples/basic-crud-app/components/app-wrapper'
+import BasicApp from '../examples/basic-crud-app/components/app-wrapper'
+import TableFormApp from '../examples/table-form-crud-app/components/app-wrapper'
 
 export const handleMenuItemClick = (event) => {
   let payload = null
@@ -19,7 +20,19 @@ export const handleMenuItemClick = (event) => {
         closable: true,
         content: (
           <Suspense fallback={<Spin />}>
-            <AppWrapper />
+            <BasicApp />
+          </Suspense>
+        )
+      }
+      break
+    case AgiliteReactEnums.menuItems.TABLE_FORM_CRUD_APP.key:
+      payload = {
+        key: AgiliteReactEnums.menuItems.TABLE_FORM_CRUD_APP.key,
+        title: AgiliteReactEnums.menuItems.TABLE_FORM_CRUD_APP.title,
+        closable: true,
+        content: (
+          <Suspense fallback={<Spin />}>
+            <TableFormApp />
           </Suspense>
         )
       }

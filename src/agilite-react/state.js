@@ -17,7 +17,7 @@ const state = {
     leftMenuEnabled: true,
     visible: false,
     leftMenuTitle: 'Apps',
-    menuItems: [Enums.menuItems.BASIC_CRUD_APP],
+    menuItems: [Enums.menuItems.BASIC_CRUD_APP, Enums.menuItems.TABLE_FORM_CRUD_APP],
     onLeftMenuItemClick: event => handleMenuItemClick(event),
     onLeftMenuOpen: () => handleMenuAction('open'),
     onLeftMenuClose: () => handleMenuAction('close')
