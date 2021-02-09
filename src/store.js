@@ -7,6 +7,7 @@ import basicCRUDAppReducer from './examples/basic-crud-app/reducer'
 
 const store = createStore(combineReducers({
   agiliteReact: agiliteReactReducer,
+  // Add Custom Reducers below
   basicCRUDApp: basicCRUDAppReducer
 }), applyMiddleware(Thunk))
 

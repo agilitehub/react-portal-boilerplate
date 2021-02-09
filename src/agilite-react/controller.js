@@ -1,34 +1,56 @@
+import { Suspense } from 'react'
+import { Spin } from 'antd'
+
 import State from './state'
 import Store from '../store'
-import Enums from './enums'
+import AgiliteReactEnums from './resources/enums'
+
+// Components
+import AppWrapper from '../examples/basic-crud-app/components/app-wrapper'
 
 export const handleMenuItemClick = (event) => {
-  Store.dispatch({ type: Enums.reducers.MENU_ITEM_CLICK, key: event.key })
+  let payload = null
+
+  switch (event.key) {
+    case AgiliteReactEnums.menuItems.BASIC_CRUD_APP.key:
+      payload = {
+        key: AgiliteReactEnums.menuItems.BASIC_CRUD_APP.key,
+        title: AgiliteReactEnums.menuItems.BASIC_CRUD_APP.title,
+        closable: true,
+        content: (
+          <Suspense fallback={<Spin />}>
+            <AppWrapper />
+          </Suspense>
+        )
+      }
+      break
+    default:
+  }
+
+  Store.dispatch({ type: AgiliteReactEnums.reducers.MENU_ITEM_CLICK, payload })
 }
 
 export const handleMenuAction = (action) => {
   switch (action) {
     case 'open':
-      Store.dispatch({ type: Enums.reducers.LEFT_MENU_OPEN })
+      Store.dispatch({ type: AgiliteReactEnums.reducers.LEFT_MENU_OPEN })
       break
     case 'close':
-      Store.dispatch({ type: Enums.reducers.LEFT_MENU_CLOSE })
+      Store.dispatch({ type: AgiliteReactEnums.reducers.LEFT_MENU_CLOSE })
       break
     default:
-      break
   }
 }
 
 export const handleTabAction = (action, key) => {
   switch (action) {
     case 'change':
-      Store.dispatch({ type: Enums.reducers.CHANGE_TAB, key })
+      Store.dispatch({ type: AgiliteReactEnums.reducers.CHANGE_TAB, key })
       break
     case 'close':
-      Store.dispatch({ type: Enums.reducers.CLOSE_TAB, key })
+      Store.dispatch({ type: AgiliteReactEnums.reducers.CLOSE_TAB, key })
       break
     default:
-      break
   }
 }
 
@@ -50,6 +72,10 @@ export const addTab = (activeKey, tab, state) => {
       leftMenu: {
         ...state.leftMenu,
         visible: false
+      },
+      rightMenu: {
+        ...state.rightMenu,
+        visible: false
       }
     }
   } else {
@@ -60,6 +86,10 @@ export const addTab = (activeKey, tab, state) => {
       tabNavigation: { ...state.tabNavigation, activeKey, tabs: state.tabNavigation.tabs },
       leftMenu: {
         ...state.leftMenu,
+        visible: false
+      },
+      rightMenu: {
+        ...state.rightMenu,
         visible: false
       }
     }
@@ -76,4 +106,23 @@ export const closeTab = (tabs, targetKey) => {
   tmpActiveKey = tmpTabs.length > 0 ? tmpTabs[tmpTabs.length - 1].key : State.tabNavigation.rootTabKey
 
   return { tabs: tmpTabs, activeKey: tmpActiveKey }
+}
+
+export const loadContent = (payload, state) => {
+  if (state.tabNavigation.enabled) {
+    return addTab(payload.key, payload, state)
+  } else {
+    return {
+      ...state,
+      leftMenu: {
+        ...state.leftMenu,
+        visible: false
+      },
+      rightMenu: {
+        ...state.rightMenu,
+        visible: false
+      },
+      rootContent: () => payload.content
+    }
+  }
 }

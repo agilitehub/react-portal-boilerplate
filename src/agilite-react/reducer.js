@@ -1,17 +1,14 @@
-import React, { lazy, Suspense } from 'react'
 import State from './state'
-import Enums from './enums'
-import { closeTab, addTab } from './controller'
-import { Spin } from 'antd'
-
-const AppWrapper = lazy(() => import('../examples/basic-crud-app/components/app-wrapper'))
+import Enums from './resources/enums'
+import { closeTab, loadContent } from './controller'
 
 const reducer = (state = State, action) => {
   let tmpObj = null
 
   switch (action.type) {
     case Enums.reducers.ADD_TAB:
-      return addTab(action.tab.key, action.tab, state)
+    case Enums.reducers.MENU_ITEM_CLICK:
+      return loadContent(action.payload, state)
     case Enums.reducers.CHANGE_TAB:
       return {
         ...state,
@@ -46,25 +43,6 @@ const reducer = (state = State, action) => {
           visible: false
         }
       }
-    case Enums.reducers.MENU_ITEM_CLICK:
-      switch (action.key) {
-        case Enums.menuItems.BASIC_CRUD_APP.key:
-          tmpObj = {
-            key: action.key,
-            closeable: true,
-            title: 'List View',
-            content: (
-              <Suspense fallback={<Spin>Loading...</Spin>}>
-                <AppWrapper />
-              </Suspense>
-            )
-          }
-          break
-        default:
-          break
-      }
-
-      return addTab(action.key, tmpObj, state)
     default:
       return state
   }

@@ -2,9 +2,10 @@ import React, { useState, memo } from 'react'
 import { Card, Row, Col, Form, Input, Select, Button } from 'antd'
 import { useDispatch } from 'react-redux'
 
-import BasicCRUDAppEnums from '../enums'
-import AgiliteReactEnums from '../../../agilite-react/enums'
-import Theme from '../../../agilite-react/theme'
+import BasicCRUDAppEnums from '../resources/enums'
+import AgiliteReactEnums from '../../../agilite-react/resources/enums'
+import Theme from '../../../agilite-react/resources/theme'
+import Templates from '../resources/templates'
 
 const _BasicForm = ({ data, isNewRecord }) => {
   const dispatch = useDispatch()
@@ -19,7 +20,7 @@ const _BasicForm = ({ data, isNewRecord }) => {
 
   const handleSubmit = () => {
     dispatch({
-      type: isNewRecord ? BasicCRUDAppEnums.reducers.ADD_RECORD : BasicCRUDAppEnums.reducers.EDIT_RECORD,
+      type: isNewRecord ? BasicCRUDAppEnums.reducers.SUBMIT_RECORD : BasicCRUDAppEnums.reducers.UPDATE_RECORD,
       payload: record
     })
     closeTab()
@@ -40,10 +41,10 @@ const _BasicForm = ({ data, isNewRecord }) => {
             onFinish={handleSubmit}
             name='form'
             initialValues={{
-              name: record.name,
-              age: record.age,
-              gender: record.gender,
-              description: record.description
+              name: record.name || '',
+              age: record.age || '',
+              gender: record.gender || '',
+              description: record.description || ''
             }}
           >
             <Row justify='space-between'>
@@ -52,49 +53,38 @@ const _BasicForm = ({ data, isNewRecord }) => {
                   <span style={{ color: Theme.twitterBootstrap.danger }}>* </span>Name
                   <Form.Item
                     noStyle
-                    name='name'
-                    rules={[{ required: true, message: 'Please provide a Name' }]}
+                    name={Templates.dataTemplate.name.key}
+                    rules={[{ required: Templates.dataTemplate.name.required, message: Templates.dataTemplate.name.validationMsg }]}
                   >
-                    <Input onChange={e => handleChange('name', e.target.value)} />
+                    <Input onChange={e => handleChange(Templates.dataTemplate.name.key, e.target.value)} />
                   </Form.Item>
                 </Form.Item>
                 <Form.Item>
                   <span style={{ color: Theme.twitterBootstrap.danger }}>* </span>Age
                   <Form.Item
                     noStyle
-                    name='age'
-                    rules={[{ required: true, message: 'Please provide an Age' }]}
+                    name={Templates.dataTemplate.age.key}
+                    rules={[{ required: Templates.dataTemplate.age.required, message: Templates.dataTemplate.age.validationMsg }]}
                   >
-                    <Input type='number' onChange={e => handleChange('age', e.target.value)} />
+                    <Input type='number' onChange={e => handleChange(Templates.dataTemplate.age.key, e.target.value)} />
                   </Form.Item>
                 </Form.Item>
                 <Form.Item>
                   <span style={{ color: Theme.twitterBootstrap.danger }}>* </span>Gender
                   <Form.Item
                     noStyle
-                    name='gender'
-                    rules={[{ required: true, message: 'Please select a Gender' }]}
+                    name={Templates.dataTemplate.gender.key}
+                    rules={[{ required: Templates.dataTemplate.gender.required, message: Templates.dataTemplate.gender.validationMsg }]}
                   >
                     <Select
-                      onChange={value => handleChange('gender', value)}
-                      options={[
-                        {
-                          label: 'Male',
-                          value: 'Male'
-                        },
-                        {
-                          label: 'Female',
-                          value: 'Female'
-                        }
-                      ]}
+                      onChange={value => handleChange(Templates.dataTemplate.gender.key, value)}
+                      options={Templates.dataTemplate.gender.options}
                     />
                   </Form.Item>
                 </Form.Item>
               </Col>
               <Col span={10}>
-                <Form.Item
-                  rules={[{ required: true, message: 'Please provide a Name' }]}
-                >
+                <Form.Item>
                   Description
                   <Input.TextArea rows={5} onChange={e => handleChange('description', e.target.value)} />
                 </Form.Item>

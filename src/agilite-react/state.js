@@ -1,6 +1,6 @@
 import { handleMenuItemClick, handleMenuAction, handleTabAction } from './controller'
-import Enums from './enums'
-import Theme from './theme'
+import Theme from './resources/theme'
+import Enums from './resources/enums'
 
 const state = {
   tabNavigation: {
@@ -18,9 +18,9 @@ const state = {
     visible: false,
     leftMenuTitle: 'Apps',
     menuItems: [Enums.menuItems.BASIC_CRUD_APP],
-    handleLeftMenuItemClick: event => handleMenuItemClick(event),
-    onOpenLeftMenu: () => handleMenuAction('open'),
-    onCloseLeftMenu: () => handleMenuAction('close')
+    onLeftMenuItemClick: event => handleMenuItemClick(event),
+    onLeftMenuOpen: () => handleMenuAction('open'),
+    onLeftMenuClose: () => handleMenuAction('close')
   },
   theme: Theme
 }

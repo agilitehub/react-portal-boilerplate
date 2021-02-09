@@ -1,8 +1,9 @@
 import React, { memo } from 'react'
-import { Row, Col, Card, Button, Tooltip, Table, Popconfirm } from 'antd'
-import { SyncOutlined, DeleteOutlined } from '@ant-design/icons'
+import { Row, Col, Card, Button, Tooltip, Table } from 'antd'
+import { SyncOutlined } from '@ant-design/icons'
 
-import Theme from '../../../agilite-react/theme'
+import Theme from '../../../agilite-react/resources/theme'
+import Templates from '../resources/templates'
 
 const _ListView = ({ data, refreshView, createRecord, editRecord, deleteRecord }) => {
   return (
@@ -28,55 +29,7 @@ const _ListView = ({ data, refreshView, createRecord, editRecord, deleteRecord }
             dataSource={data}
             style={{ marginTop: 10 }}
             pagination={false}
-            columns={[
-              {
-                title: 'Name',
-                dataIndex: 'name',
-                key: 'name',
-                render: (text, record) => {
-                  return (
-                    // eslint-disable-next-line
-                    <a onClick={() => editRecord(record)}>
-                      {text}
-                    </a>
-                  )
-                }
-              },
-              {
-                title: 'Description',
-                dataIndex: 'description',
-                key: 'description'
-              },
-              {
-                title: 'Age',
-                dataIndex: 'age',
-                key: 'name'
-              },
-              {
-                title: 'Gender',
-                dataIndex: 'gender',
-                key: 'name'
-              },
-              {
-                title: 'Action',
-                key: 'action',
-                width: '5%',
-                render: (text, record) => {
-                  return (
-                    <Popconfirm
-                      title='Are you sure you want to delete this record?'
-                      okText='Yes'
-                      cancelText='No'
-                      onConfirm={() => deleteRecord(record.id)}
-                    >
-                      <DeleteOutlined
-                        style={{ cursor: 'pointer', color: Theme.twitterBootstrap.danger }}
-                      />
-                    </Popconfirm>
-                  )
-                }
-              }
-            ]}
+            columns={Templates.columnTemplate(editRecord, deleteRecord)}
           />
         </Card>
       </Col>

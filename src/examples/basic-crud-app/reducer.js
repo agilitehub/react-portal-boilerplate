@@ -1,12 +1,12 @@
 import State from './state'
-import Enums from './enums'
+import Enums from './resources/enums'
 
 const reducer = (state = State, action) => {
   let data = []
   let tmpIndex = null
 
   switch (action.type) {
-    case Enums.reducers.ADD_RECORD:
+    case Enums.reducers.SUBMIT_RECORD:
       data = Object.assign([], state.data)
       data.push(action.payload)
 
@@ -14,7 +14,7 @@ const reducer = (state = State, action) => {
         ...state,
         data
       }
-    case Enums.reducers.EDIT_RECORD:
+    case Enums.reducers.UPDATE_RECORD:
       data = Object.assign([], state.data)
       tmpIndex = data.findIndex(record => record.id === action.payload.id)
       data.splice(tmpIndex, 1, action.payload)

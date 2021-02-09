@@ -1,7 +1,7 @@
 const enums = {
   reducers: {
-    ADD_RECORD: 'ADD_RECORD',
-    EDIT_RECORD: 'EDIT_RECORD',
+    SUBMIT_RECORD: 'SUBMIT_RECORD',
+    UPDATE_RECORD: 'UPDATE_RECORD',
     DELETE_RECORD: 'DELETE_RECORD'
   }
 }

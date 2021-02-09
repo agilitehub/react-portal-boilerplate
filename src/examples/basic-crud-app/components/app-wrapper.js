@@ -1,9 +1,9 @@
 import React, { lazy, Suspense, memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
-import AgiliteReactEnums from '../../../agilite-react/enums'
-import BasicCRUDAppEnums from '../enums'
 import { Spin } from 'antd'
+
+import AgiliteReactEnums from '../../../agilite-react/resources/enums'
+import BasicCRUDAppEnums from '../resources/enums'
 
 const ListView = lazy(() => import('./list-view'))
 const BasicForm = lazy(() => import('./basic-form'))
@@ -19,20 +19,14 @@ const _AppWrapper = () => {
   const createRecord = () => {
     dispatch({
       type: AgiliteReactEnums.reducers.ADD_TAB,
-      tab: {
+      payload: {
         key: 'new_record',
         closable: true,
         title: 'New Record',
         content: (
-          <Suspense fallback={<Spin>Loading...</Spin>}>
+          <Suspense fallback={<Spin />}>
             <BasicForm
-              data={{
-                id: `${Date.now()}`,
-                name: '',
-                description: '',
-                gender: '',
-                age: ''
-              }}
+              data={{ id: Date.now().toString() }}
               isNewRecord
             />
           </Suspense>
@@ -44,12 +38,12 @@ const _AppWrapper = () => {
   const editRecord = (record) => {
     dispatch({
       type: AgiliteReactEnums.reducers.ADD_TAB,
-      tab: {
+      payload: {
         key: record.id,
         closable: true,
         title: `Record: ${record.name}`,
         content: (
-          <Suspense fallback={<Spin>Loading...</Spin>}>
+          <Suspense fallback={<Spin />}>
             <BasicForm data={record} isNewRecord={false} />
           </Suspense>
         )
@@ -62,7 +56,7 @@ const _AppWrapper = () => {
   }
 
   return (
-    <Suspense fallback={<Spin>Loading...</Spin>}>
+    <Suspense fallback={<Spin />}>
       <ListView data={viewData} createRecord={createRecord} editRecord={editRecord} deleteRecord={deleteRecord} refreshView={refreshView} />
     </Suspense>
   )
