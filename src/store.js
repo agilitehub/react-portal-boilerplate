@@ -1,16 +1,14 @@
 import Thunk from 'redux-thunk'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { initCustomReducers } from './agilite-react-setup'
 
 // Reducers
 import agiliteReactReducer from './agilite-react/reducer'
-import basicCRUDAppReducer from './examples/basic-crud-app/reducer'
-import tableFormCRUDAppReducer from './examples/table-form-crud-app/reducer'
 
+const customReducers = initCustomReducers()
 const store = createStore(combineReducers({
   agiliteReact: agiliteReactReducer,
-  // Add Custom Reducers below
-  basicCRUDApp: basicCRUDAppReducer,
-  tableFormCRUDApp: tableFormCRUDAppReducer
+  ...customReducers
 }), applyMiddleware(Thunk))
 
 export default store

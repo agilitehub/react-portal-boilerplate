@@ -6,16 +6,6 @@ const enums = {
     LEFT_MENU_OPEN: 'LEFT_MENU_OPEN',
     LEFT_MENU_CLOSE: 'LEFT_MENU_CLOSE',
     MENU_ITEM_CLICK: 'MENU_ITEM_CLICK'
-  },
-  menuItems: {
-    BASIC_CRUD_APP: {
-      key: 'basic_crud_app',
-      title: 'Basic CRUD App'
-    },
-    TABLE_FORM_CRUD_APP: {
-      key: 'table_form_crud_app',
-      title: 'Table Form CRUD App'
-    }
   }
 }
 

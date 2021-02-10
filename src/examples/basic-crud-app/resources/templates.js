@@ -5,7 +5,7 @@ import { DeleteOutlined } from '@ant-design/icons'
 import Theme from '../../../agilite-react/resources/theme'
 
 const templates = {
-  dataTemplate: {
+  dataModel: {
     id: '',
     name: {
       key: 'name',
@@ -36,6 +36,15 @@ const templates = {
       key: 'description',
       required: false,
       validationMsg: ''
+    }
+  },
+  dataTemplate: () => {
+    return {
+      id: '',
+      name: '',
+      age: '',
+      gender: '',
+      description: ''
     }
   },
   columnTemplate: (editRecord, deleteRecord) => {

@@ -6,6 +6,32 @@ import Theme from '../../../agilite-react/resources/theme'
 import Templates from '../resources/templates'
 
 const _ListView = ({ data, refreshView, createRecord, editRecord, deleteRecord }) => {
+  const expandedRowRender = (record) => {
+    return (
+      <Table
+        columns={[
+          {
+            key: 'label',
+            title: 'Label',
+            dataIndex: 'label'
+          },
+          {
+            key: 'type',
+            title: 'Type',
+            dataIndex: 'type'
+          },
+          {
+            key: 'value',
+            title: 'Value',
+            dataIndex: 'value'
+          }
+        ]}
+        dataSource={record.entries}
+        pagination={false}
+      />
+    )
+  }
+
   return (
     <Row justify='center'>
       <Col span={24}>
@@ -25,6 +51,7 @@ const _ListView = ({ data, refreshView, createRecord, editRecord, deleteRecord }
             </Tooltip>
           </Button>
           <Table
+            expandedRowRender={expandedRowRender}
             rowKey={record => record.name}
             dataSource={data}
             style={{ marginTop: 10 }}

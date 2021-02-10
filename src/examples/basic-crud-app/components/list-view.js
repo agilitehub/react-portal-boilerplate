@@ -9,7 +9,7 @@ const _ListView = ({ data, refreshView, createRecord, editRecord, deleteRecord }
   return (
     <Row justify='center'>
       <Col span={24}>
-        <Card title='List View' type='inner'>
+        <Card title='Basic CRUD App' type='inner'>
           <Button
             onClick={createRecord}
             style={{ backgroundColor: Theme.twitterBootstrap.success, color: 'white' }}

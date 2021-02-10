@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 // React Drag n Drop
 import { DragSource, DropTarget } from 'react-dnd'
-import { withDragDropContext } from './html5-backend'
+import { withDragDropContext } from '../../../agilite-react/reusables/components/html5-backend'
 import update from 'immutability-helper'
 
 import BasicCRUDAppEnums from '../resources/enums'
@@ -190,7 +190,7 @@ const _TableForm = ({ data, isNewRecord }) => {
     }))
   }
 
-  const columns = Templates.tableFormColumnTemplate(addRow, deleteRow, changeRow, record.entries)
+  const columns = Templates.formTableColumns(addRow, deleteRow, changeRow, record.entries)
 
   return (
     <Row justify='center'>
@@ -203,8 +203,9 @@ const _TableForm = ({ data, isNewRecord }) => {
             onFinish={handleSubmit}
             name='form'
             initialValues={{
-              name: record.name || '',
-              description: record.description || ''
+              ...Templates.dataTemplate(),
+              name: record.name,
+              description: record.description
             }}
           >
             <Row justify='space-between'>
@@ -213,15 +214,15 @@ const _TableForm = ({ data, isNewRecord }) => {
                   <span style={{ color: Theme.twitterBootstrap.danger }}>* </span>Name
                   <Form.Item
                     noStyle
-                    name={Templates.dataTemplate.name.key}
-                    rules={[{ required: Templates.dataTemplate.name.required, message: Templates.dataTemplate.name.validationMsg }]}
+                    name={Templates.dataModel.name.key}
+                    rules={[{ required: Templates.dataModel.name.required, message: Templates.dataModel.name.validationMsg }]}
                   >
-                    <Input onChange={e => handleChange(Templates.dataTemplate.name.key, e.target.value)} />
+                    <Input onChange={e => handleChange(Templates.dataModel.name.key, e.target.value)} />
                   </Form.Item>
                 </Form.Item>
                 <Form.Item>
                   Description
-                  <Input.TextArea rows={5} onChange={e => handleChange('description', e.target.value)} />
+                  <Input.TextArea rows={5} onChange={e => handleChange(Templates.dataModel.description.key, e.target.value)} />
                 </Form.Item>
               </Col>
             </Row>

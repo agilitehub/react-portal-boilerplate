@@ -5,7 +5,7 @@ import { DeleteOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import Theme from '../../../agilite-react/resources/theme'
 
 const templates = {
-  dataTemplate: {
+  dataModel: {
     id: '',
     name: {
       key: 'name',
@@ -25,7 +25,21 @@ const templates = {
       }
     ]
   },
-  tableFormColumnTemplate: (addRow, deleteRow, changeRow, data) => {
+  dataTemplate: () => {
+    return {
+      id: '',
+      name: '',
+      description: '',
+      entries: [
+        {
+          label: '',
+          type: '',
+          value: ''
+        }
+      ]
+    }
+  },
+  formTableColumns: (addRow, deleteRow, changeRow, data) => {
     return [
       {
         title: 'Label',

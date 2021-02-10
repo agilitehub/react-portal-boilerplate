@@ -1,6 +1,6 @@
 import { handleMenuItemClick, handleMenuAction, handleTabAction } from './controller'
+import { initLeftMenuItems } from '../agilite-react-setup'
 import Theme from './resources/theme'
-import Enums from './resources/enums'
 
 const state = {
   tabNavigation: {
@@ -17,7 +17,7 @@ const state = {
     leftMenuEnabled: true,
     visible: false,
     leftMenuTitle: 'Apps',
-    menuItems: [Enums.menuItems.BASIC_CRUD_APP, Enums.menuItems.TABLE_FORM_CRUD_APP],
+    menuItems: initLeftMenuItems(),
     onLeftMenuItemClick: event => handleMenuItemClick(event),
     onLeftMenuOpen: () => handleMenuAction('open'),
     onLeftMenuClose: () => handleMenuAction('close')

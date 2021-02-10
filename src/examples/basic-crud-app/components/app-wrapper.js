@@ -4,6 +4,7 @@ import { Spin } from 'antd'
 
 import AgiliteReactEnums from '../../../agilite-react/resources/enums'
 import BasicCRUDAppEnums from '../resources/enums'
+import Templates from '../resources/templates'
 
 const ListView = lazy(() => import('./list-view'))
 const BasicForm = lazy(() => import('./basic-form'))
@@ -26,7 +27,7 @@ const _AppWrapper = () => {
         content: (
           <Suspense fallback={<Spin />}>
             <BasicForm
-              data={{ id: Date.now().toString() }}
+              data={{ id: Date.now().toString(), ...Templates.dataTemplate() }}
               isNewRecord
             />
           </Suspense>

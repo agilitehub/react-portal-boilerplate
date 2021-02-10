@@ -1,45 +1,10 @@
-import { Suspense } from 'react'
-import { Spin } from 'antd'
-
 import State from './state'
 import Store from '../store'
 import AgiliteReactEnums from './resources/enums'
-
-// Components
-import BasicApp from '../examples/basic-crud-app/components/app-wrapper'
-import TableFormApp from '../examples/table-form-crud-app/components/app-wrapper'
+import { generateContent } from '../agilite-react-setup'
 
 export const handleMenuItemClick = (event) => {
-  let payload = null
-
-  switch (event.key) {
-    case AgiliteReactEnums.menuItems.BASIC_CRUD_APP.key:
-      payload = {
-        key: AgiliteReactEnums.menuItems.BASIC_CRUD_APP.key,
-        title: AgiliteReactEnums.menuItems.BASIC_CRUD_APP.title,
-        closable: true,
-        content: (
-          <Suspense fallback={<Spin />}>
-            <BasicApp />
-          </Suspense>
-        )
-      }
-      break
-    case AgiliteReactEnums.menuItems.TABLE_FORM_CRUD_APP.key:
-      payload = {
-        key: AgiliteReactEnums.menuItems.TABLE_FORM_CRUD_APP.key,
-        title: AgiliteReactEnums.menuItems.TABLE_FORM_CRUD_APP.title,
-        closable: true,
-        content: (
-          <Suspense fallback={<Spin />}>
-            <TableFormApp />
-          </Suspense>
-        )
-      }
-      break
-    default:
-  }
-
+  const payload = generateContent(event.key)
   Store.dispatch({ type: AgiliteReactEnums.reducers.MENU_ITEM_CLICK, payload })
 }
 

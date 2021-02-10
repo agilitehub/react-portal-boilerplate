@@ -41,10 +41,11 @@ const _BasicForm = ({ data, isNewRecord }) => {
             onFinish={handleSubmit}
             name='form'
             initialValues={{
-              name: record.name || '',
-              age: record.age || '',
-              gender: record.gender || '',
-              description: record.description || ''
+              ...Templates.dataTemplate(),
+              name: record.name,
+              age: record.age,
+              gender: record.gender,
+              description: record.description
             }}
           >
             <Row justify='space-between'>
@@ -53,32 +54,32 @@ const _BasicForm = ({ data, isNewRecord }) => {
                   <span style={{ color: Theme.twitterBootstrap.danger }}>* </span>Name
                   <Form.Item
                     noStyle
-                    name={Templates.dataTemplate.name.key}
-                    rules={[{ required: Templates.dataTemplate.name.required, message: Templates.dataTemplate.name.validationMsg }]}
+                    name={Templates.dataModel.name.key}
+                    rules={[{ required: Templates.dataModel.name.required, message: Templates.dataModel.name.validationMsg }]}
                   >
-                    <Input onChange={e => handleChange(Templates.dataTemplate.name.key, e.target.value)} />
+                    <Input onChange={e => handleChange(Templates.dataModel.name.key, e.target.value)} />
                   </Form.Item>
                 </Form.Item>
                 <Form.Item>
                   <span style={{ color: Theme.twitterBootstrap.danger }}>* </span>Age
                   <Form.Item
                     noStyle
-                    name={Templates.dataTemplate.age.key}
-                    rules={[{ required: Templates.dataTemplate.age.required, message: Templates.dataTemplate.age.validationMsg }]}
+                    name={Templates.dataModel.age.key}
+                    rules={[{ required: Templates.dataModel.age.required, message: Templates.dataModel.age.validationMsg }]}
                   >
-                    <Input type='number' onChange={e => handleChange(Templates.dataTemplate.age.key, e.target.value)} />
+                    <Input type='number' onChange={e => handleChange(Templates.dataModel.age.key, e.target.value)} />
                   </Form.Item>
                 </Form.Item>
                 <Form.Item>
                   <span style={{ color: Theme.twitterBootstrap.danger }}>* </span>Gender
                   <Form.Item
                     noStyle
-                    name={Templates.dataTemplate.gender.key}
-                    rules={[{ required: Templates.dataTemplate.gender.required, message: Templates.dataTemplate.gender.validationMsg }]}
+                    name={Templates.dataModel.gender.key}
+                    rules={[{ required: Templates.dataModel.gender.required, message: Templates.dataModel.gender.validationMsg }]}
                   >
                     <Select
-                      onChange={value => handleChange(Templates.dataTemplate.gender.key, value)}
-                      options={Templates.dataTemplate.gender.options}
+                      onChange={value => handleChange(Templates.dataModel.gender.key, value)}
+                      options={Templates.dataModel.gender.options}
                     />
                   </Form.Item>
                 </Form.Item>
