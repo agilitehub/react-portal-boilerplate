@@ -2,9 +2,12 @@ import { handleMenuItemClick, handleMenuAction, handleTabAction } from './contro
 import { initLeftMenuItems } from '../agilite-react-setup'
 import Theme from './resources/theme'
 
+// Components
+import SignIn from '../examples/basic-sign-in-app/components/sign-in'
+
 const state = {
   tabNavigation: {
-    enabled: true,
+    enabled: false,
     rootTabKey: 'home',
     rootTabTitle: 'Home',
     activeKey: 'home',
@@ -14,7 +17,7 @@ const state = {
     onTabClose: key => handleTabAction('close', key)
   },
   leftMenu: {
-    leftMenuEnabled: true,
+    leftMenuEnabled: false,
     visible: false,
     leftMenuTitle: 'Apps',
     menuItems: initLeftMenuItems(),
@@ -22,7 +25,8 @@ const state = {
     onLeftMenuOpen: () => handleMenuAction('open'),
     onLeftMenuClose: () => handleMenuAction('close')
   },
-  theme: Theme
+  theme: Theme,
+  rootContent: SignIn
 }
 
 export default state

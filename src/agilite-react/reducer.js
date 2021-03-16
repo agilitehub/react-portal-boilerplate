@@ -2,6 +2,9 @@ import State from './state'
 import Enums from './resources/enums'
 import { closeTab, loadContent } from './controller'
 
+// Components
+import SignIn from '../examples/basic-sign-in-app/components/sign-in'
+
 const reducer = (state = State, action) => {
   let tmpObj = null
 
@@ -42,6 +45,32 @@ const reducer = (state = State, action) => {
           ...state.leftMenu,
           visible: false
         }
+      }
+    case Enums.reducers.SIGN_IN:
+      return {
+        ...state,
+        leftMenu: {
+          ...state.leftMenu,
+          leftMenuEnabled: true
+        },
+        tabNavigation: {
+          ...state.tabNavigation,
+          enabled: true
+        },
+        rootContent: null
+      }
+    case Enums.reducers.SIGN_OUT:
+      return {
+        ...state,
+        leftMenu: {
+          ...state.leftMenu,
+          leftMenuEnabled: false
+        },
+        tabNavigation: {
+          ...state.tabNavigation,
+          enabled: false
+        },
+        rootContent: <SignIn />
       }
     default:
       return state
